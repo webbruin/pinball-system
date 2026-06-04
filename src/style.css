@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #e8eaf0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#app {
+  width: 393px;
+  min-height: 100vh;
+  background: #f5f6fa;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+  overflow-x: hidden;
+}
+
+/* Vant 主题色覆盖 */
+:root {
+  --van-primary-color: #2563EB;
+  --van-button-primary-background: #2563EB;
+  --van-button-primary-border-color: #2563EB;
+  --van-tabs-bottom-bar-color: #2563EB;
+  --van-tab-active-text-color: #111;
+  --van-switch-on-background: #2563EB;
+  --van-tabbar-item-active-color: #2563EB;
+  --van-cell-background: #fff;
+  --van-nav-bar-background: #fff;
+}
+
+.page-scroll {
+  height: calc(100vh - 50px - 50px);
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+
+.page-scroll::-webkit-scrollbar { display: none; }
+
+.gradient-header {
+  background: linear-gradient(160deg, #e8eeff 0%, #fff 70%);
+  padding: 16px 16px 12px;
+}
+
+.gradient-header .title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+}
+
+.gradient-header .subtitle {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+}
+
+.section {
+  margin: 12px 16px 0;
+}
+
+/* 统一卡片 */
+.van-cell-group--inset {
+  margin: 12px 16px 0;
+}
