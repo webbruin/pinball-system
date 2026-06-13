@@ -9,13 +9,13 @@
     <div class="page-scroll">
       <div class="gradient-header">
         <div class="title">Banner广告</div>
-        <div class="subtitle">管理轮播广告与拉新活动</div>
+        <div class="subtitle">管理首页广告与商城广告</div>
       </div>
 
       <van-tabs v-model:active="bannerType" sticky offset-top="46" @change="onSearch">
         <van-tab title="全部" :name="undefined" />
-        <van-tab title="轮播广告" :name="1" />
-        <van-tab title="拉新活动" :name="2" />
+        <van-tab title="首页广告" :name="1" />
+        <van-tab title="商城广告" :name="2" />
       </van-tabs>
 
       <div class="section" style="margin-bottom:16px">
@@ -25,7 +25,7 @@
             <van-icon v-else name="photo-o" size="36" color="#ccc" />
             <div class="banner-overlay">
               <van-tag size="small" :type="item.bannerType === 1 ? 'primary' : 'warning'">
-                {{ item.bannerType === 1 ? '轮播广告' : '拉新活动' }}
+                {{ item.bannerType === 1 ? '首页广告' : '商城广告' }}
               </van-tag>
               <van-switch v-model="item.status" :active-value="1" :inactive-value="0" size="18px" @change="toggleStatus(item)" />
             </div>
@@ -68,8 +68,8 @@
             <van-field name="bannerType" label="Banner类型">
               <template #input>
                 <van-radio-group direction="horizontal" v-model="form.bannerType">
-                  <van-radio :name="1">轮播广告</van-radio>
-                  <van-radio :name="2">拉新活动</van-radio>
+                  <van-radio :name="1">首页广告</van-radio>
+                  <van-radio :name="2">商城广告</van-radio>
                 </van-radio-group>
               </template>
             </van-field>
