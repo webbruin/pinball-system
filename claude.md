@@ -183,8 +183,8 @@ base
       code
       data	array
         bannerType	大类：1-轮播广告，2-拉新活动
-        createTime	创建时间	(date-time)	
-        expireTime	过期时间，为空表示永久有效	(date-time)	
+        createTime	创建时间	
+        expireTime	过期时间，为空表示永久有效	
         id	Banner ID
         imgUrl	Banner图片地址	
         jumpUrl	跳转链接	
@@ -362,3 +362,375 @@ base
         pageSize	每页大小		
         total	总条数		
       message		
+六.充值套餐管理
+  1.分页查询充值套餐
+    接口：/admin/pinball/recharge/page
+    入参：
+      current	当前页			
+      packageName	套餐名称（模糊查询）			
+      pageSize	每页大小			
+      sortField	排序字段集合			
+        asc				
+        column				
+      status	状态：1-启用，0-停用
+    出参：
+      code
+      data
+        current	当前页	
+        data	返回数据
+          createTime	创建时间		
+          createUserName	创建人姓名		
+          giftMarbleAmount	赠送弹珠数量		
+          giftMemberPointAmount	赠送会员积分数量		
+          giftPointCardAmount	赠送积分卡数量		
+          marbleAmount	充值弹珠数量		
+          packageId	套餐ID		
+          packageName	套餐名称		
+          payAmount	支付金额（元）		
+          remark	备注		
+          sortOrder	显示排序		
+          status	状态：1-启用，0-停用		
+          updateTime	更新时间		
+          updateUserName	更新人姓名		
+        pageSize	每页大小	
+        total	总条数	
+      message	
+  2.新增充值套餐
+    接口：/admin/pinball/recharge/add
+    入参：
+      giftMarbleAmount	赠送弹珠数量			
+      giftMemberPointAmount	赠送会员积分数量			
+      giftPointCardAmount	赠送积分卡数量			
+      marbleAmount	充值弹珠数量			
+      packageName	套餐名称			
+      payAmount	支付金额（元，精确到2位小数）			
+      remark	备注			
+      sortOrder	显示排序（越小越靠前）			
+      status	状态：1-启用，0-停用（新增不传默认启用）
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  3.修改充值套餐
+    接口：/admin/pinball/recharge/update
+    入参：	
+      giftMarbleAmount	赠送弹珠数量			
+      giftMemberPointAmount	赠送会员积分数量			
+      giftPointCardAmount	赠送积分卡数量			
+      marbleAmount	充值弹珠数量			
+      packageId	套餐ID（新增时为空，修改时必填）			
+      packageName	套餐名称			
+      payAmount	支付金额（元，精确到2位小数）			
+      remark	备注			
+      sortOrder	显示排序（越小越靠前）			
+      status	状态：1-启用，0-停用（新增不传默认启用）
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  4.删除充值套餐
+    接口：/admin/pinball/recharge/delete
+    入参：packageId	套餐ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  5.启用-禁用充值套餐
+    接口：/admin/pinball/recharge/status
+    入参：	
+      packageId	套餐ID
+      status	状态：1-启用，0-停用
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+七.会员等级管理
+  1.新增等级规则
+    接口：/admin/pinball/level/config/add
+    入参：	
+      goldBonusRate	金币加成（%）			
+      levelName	等级名称			
+      levelValue	等级对应的值，从1开始			
+      serviceLevel	客服支持：1-标准客服，2-优先客服，3-专属客服，4-vip专属客服，5-首席客服			
+      shoppingDiscountRate	购物折扣（%）			
+      status	状态：1-启用，0-停用（新增不传默认启用）			
+      upgradeAmount	晋升该等级所需充值金额（单位：元）	
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  2.修改等级规则
+    接口：/admin/pinball/level/config/update
+    入参：	
+      goldBonusRate	金币加成（%）			
+      levelId	等级ID（新增时为空，修改时必填）			
+      levelName	等级名称			
+      levelValue	等级对应的值，从1开始			
+      serviceLevel	客服支持：1-标准客服，2-优先客服，3-专属客服，4-vip专属客服，5-首席客服			
+      shoppingDiscountRate	购物折扣（%）			
+      status	状态：1-启用，0-停用（新增不传默认启用）			
+      upgradeAmount	晋升该等级所需充值金额（单位：元）	
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  3.删除等级规则
+    接口：/admin/pinball/level/config/delete
+    入参：levelId	等级ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  4.查询等级规则列表
+    接口：/admin/pinball/level/config/list
+    入参：
+    出参：
+      code
+      data
+        beginTime			
+        createTime	创建时间
+        createUser	创建人	
+        createUserName	创建人姓名		
+        deleteFlag	是否删除：0-未删除，1-已删除		
+        endTime			
+        goldBonusRate	金币加成	
+        levelId	等级ID	
+        levelName	等级名称		
+        levelValue	等级对应的值，从1开始	
+        params	其他搜索内容, K-V结构	object	
+        searchTime			
+        serviceLevel	客服支持：1-标准客服，2-优先客服，3-专属客服，4-vip专属客服，5-首席客服		
+        shoppingDiscountRate	购物折扣	
+        status	状态：1-启用，0-停用		
+        updateTime	更新时间
+        updateUser	更新人	
+        updateUserName	更新人姓名		
+        upgradeAmount	晋升该等级所需充值金额		
+      message
+  5.查询等级规则详情
+    接口：/admin/pinball/level/config/detail
+    入参：levelId	等级ID
+    出参：
+      code	
+      data	用户等级晋升配置对象
+        beginTime			
+        createTime	创建时间	
+        createUser	创建人	
+        createUserName	创建人姓名		
+        deleteFlag	是否删除：0-未删除，1-已删除	
+        endTime			
+        goldBonusRate	金币加成	
+        levelId	等级ID	
+        levelName	等级名称		
+        levelValue	等级对应的值，从1开始	
+        params	其他搜索内容, K-V结构		
+        searchTime			
+        serviceLevel	客服支持：1-标准客服，2-优先客服，3-专属客服，4-vip专属客服，5-首席客服	
+        shoppingDiscountRate	购物折扣	
+        status	状态：1-启用，0-停用	
+        updateTime	更新时间	
+        updateUser	更新人	
+        updateUserName	更新人姓名		
+        upgradeAmount	晋升该等级所需充值金额	
+      message
+  6.管理员手动指定用户等级
+    接口：/admin/pinball/level/user/assign
+    入参：	
+      levelValue	目标等级值			
+      userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  7.【全局策略】查询等级策略配置
+    接口：/admin/pinball/level/strategy/getConfig
+    入参：
+      code
+      data		用户等级策略配置
+        configId	配置ID	
+        createTime	创建时间	
+        createUser	创建人	
+        createUserName	创建人姓名		
+        downgradeDays	降级观察天数（strategy_type=2时有效）	
+        downgradeMinRechargeAmount	观察期内最低充值金额，低于此值降1级（strategy_type=2时有效）	
+        remark	备注		
+        rewardValidityDays	等级奖励有效期（天），0=永久	
+        strategyType	等级策略：1-只升不降，2-有降有升	
+        updateTime	更新时间	
+        updateUser	更新人	
+        updateUserName	更新人姓名		
+      message
+    出参：
+  8.【全局策略】保存等级策略配置
+    接口：/admin/pinball/level/strategy/saveConfig
+    入参：
+      downgradeDays	降级观察天数（strategy_type=2时必填）			
+      downgradeMinRechargeAmount	观察期内最低充值金额（strategy_type=2时必填）			
+      remark	备注			
+      rewardValidityDays	等级奖励有效期（天），0=永久			
+      strategyType	等级策略：1-只升不降，2-有降有升
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+八.用户管理
+  1.分页查询用户列表
+    接口：/admin/pinball/user/page
+    入参：
+      current	当前页			
+      levelValue	会员等级			
+      nickName	用户昵称（模糊查询）			
+      pageSize	每页大小			
+      phoneNumber	手机号码（模糊查询）			
+      sortField	排序字段集合			
+        asc				
+        column				
+      status	帐号状态：1-正常，0-停用			
+      userName	用户账号（模糊查询）
+    出参：
+      code
+      data
+        current	当前页	
+        data	返回数据	array
+          avatar	头像地址		
+          birthday	生日		
+          createTime	注册时间		
+          gender	用户性别：1-男，2-女，3-未知		
+          levelName	会员等级名称		
+          levelValue	会员等级值		
+          loginDate	最近登录时间		
+          marbleAmount	弹珠余额		
+          memberPointAmount	会员积分余额		
+          nickName	用户昵称		
+          phoneNumber	手机号码		
+          pointCardAmount	积分卡余额		
+          status	帐号状态：1-正常，0-停用		
+          totalRechargeAmount	充值总金额（元，统计成功充值订单）	
+          userId	用户ID		
+          userName	用户账号		
+        pageSize	每页大小	
+        total	总条数	
+      message	
+  2.查询用户详情
+    接口：/admin/pinball/user/detail
+    入参：userId	用户ID
+    出参：
+      code
+      data object
+        avatar	头像地址		
+        birthday	生日		
+        createTime	注册时间		
+        gender	用户性别：1-男，2-女，3-未知		
+        levelName	会员等级名称		
+        levelValue	会员等级值		
+        loginDate	最近登录时间		
+        marbleAmount	弹珠余额		
+        memberPointAmount	会员积分余额		
+        nickName	用户昵称		
+        phoneNumber	手机号码		
+        pointCardAmount	积分卡余额		
+        status	帐号状态：1-正常，0-停用		
+        totalRechargeAmount	充值总金额（元，统计成功充值订单）	
+        userId	用户ID		
+        userName	用户账号		
+      message
+  3.修改用户资料
+    接口：/admin/pinball/user/update
+    入参：
+      avatar	头像地址			
+      birthday	生日			
+      gender	用户性别：1-男，2-女，3-未知			
+      nickName	用户昵称			
+      userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  4.删除用户
+    接口：/admin/pinball/user/delete
+    入参：userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  5.启用-停用用户
+    接口：/admin/pinball/user/status
+    入参：
+      status	帐号状态：1-正常，0-停用			
+      userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  6.给指定用户发放弹珠
+    接口：/admin/pinball/user/grantMarble
+    入参：
+      amount	发放弹珠数量			
+      remark	备注			
+      userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  7.给指定用户发放会员积分
+    接口：/admin/pinball/user/grantMemberPoint
+    入参：
+      amount	发放会员积分数量			
+      remark	备注			
+      userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+  8.给指定用户发放积分卡
+    接口：/admin/pinball/user/grantPointCard
+    入参：
+      amount	发放积分卡数量			
+      remark	备注			
+      userId	用户ID
+    出参：
+      {
+        "code": 0,
+        "data": 0,
+        "message": ""
+      }
+九.首页管理
+  1.首页概览统计（GMV、用户数、会员数、订单总量）
+    接口：/admin/pinball/statistics/homeOverview
+    入参：
+    出参：
+      code
+      data object
+        gmv	GMV：成功充值总金额（元）		
+        memberCount	会员数：等级>1的付费会员数	
+        orderCount	订单总量：成功充值订单数	
+        userCount	用户数：已注册未删除用户数	
+      message	
