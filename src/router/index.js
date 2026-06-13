@@ -12,6 +12,7 @@ import CategoryView from '../views/CategoryView.vue'
 import SignInView from '../views/SignInView.vue'
 import BannerView from '../views/BannerView.vue'
 import InvitationView from '../views/InvitationView.vue'
+import RechargeView from '../views/RechargeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,7 +34,8 @@ const router = createRouter({
         { path: '/sign-in', name: 'sign-in', component: SignInView },
         { path: '/banner', name: 'banner', component: BannerView },
         { path: '/invitation', name: 'invitation', component: InvitationView },
-      ] 
+        { path: '/recharge', name: 'recharge', component: RechargeView },
+      ]
     },
     // { path: '/', redirect: '/home' },
     { path: '/:pathMatch(.*)*', redirect: '/' },

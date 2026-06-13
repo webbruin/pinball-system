@@ -3,7 +3,6 @@
     <van-nav-bar title="数据中心" />
 
     <div class="page-scroll">
-      <!-- 渐变标题区 -->
       <div class="gradient-header">
         <div class="title">数据中心</div>
         <div class="subtitle">实时业务监控</div>
@@ -11,18 +10,41 @@
 
       <!-- 统计卡片 -->
       <div class="stats-grid section">
-        <div class="stat-card" v-for="s in stats" :key="s.label">
+        <div class="stat-card">
           <div class="stat-top">
-            <div class="stat-icon" :style="{ background: s.iconBg }">
-              <van-icon :name="s.icon" :color="s.iconColor" size="20" />
+            <div class="stat-icon" style="background:#EFF6FF">
+              <van-icon name="gold-coin-o" color="#2563EB" size="20" />
             </div>
-            <span class="stat-trend" :class="s.trend > 0 ? 'up' : 'down'">
-              <van-icon :name="s.trend > 0 ? 'upgrade' : 'downgrade'" size="12" />
-              {{ Math.abs(s.trend) }}%
-            </span>
           </div>
-          <div class="stat-label">{{ s.label }}</div>
-          <div class="stat-value">{{ s.value }}</div>
+          <div class="stat-label">GMV</div>
+          <div class="stat-value">¥{{ formatNumber(overview.gmv) }}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:#F3E8FF">
+              <van-icon name="friends-o" color="#7C3AED" size="20" />
+            </div>
+          </div>
+          <div class="stat-label">用户数</div>
+          <div class="stat-value">{{ formatNumber(overview.userCount) }}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:#FFF7ED">
+              <van-icon name="vip-card-o" color="#F97316" size="20" />
+            </div>
+          </div>
+          <div class="stat-label">会员数</div>
+          <div class="stat-value">{{ formatNumber(overview.memberCount) }}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-icon" style="background:#FEF2F2">
+              <van-icon name="shopping-cart-o" color="#EF4444" size="20" />
+            </div>
+          </div>
+          <div class="stat-label">订单总量</div>
+          <div class="stat-value">{{ formatNumber(overview.orderCount) }}</div>
         </div>
       </div>
 
@@ -34,7 +56,7 @@
             <span class="dot teal"></span><span>访客数</span>
             <span class="dot purple"></span><span>新增</span>
           </div>
-          <van-tag type="primary" plain>3月</van-tag>
+          <van-tag type="primary" plain>趋势</van-tag>
         </div>
         <v-chart class="chart" :option="chartOption" autoresize />
       </div>
@@ -43,6 +65,7 @@
 </template>
 
 <script setup>
+import { onMounted, ref, reactive } from 'vue'
 import { use } from 'echarts/core'
 import { BarChart, LineChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent, LegendComponent } from 'echarts/components'
@@ -51,12 +74,35 @@ import VChart from 'vue-echarts'
 
 use([BarChart, LineChart, GridComponent, TooltipComponent, LegendComponent, CanvasRenderer])
 
-const stats = [
-  { label: '总销售额', value: '¥128.5万', trend: 12.5, icon: 'gold-coin-o',  iconBg: '#EFF6FF', iconColor: '#2563EB' },
-  { label: '活跃用户', value: '8,547',    trend: 8.3,  icon: 'friends-o',    iconBg: '#F3E8FF', iconColor: '#7C3AED' },
-  { label: '订单总量', value: '12.6K',    trend: 5.7,  icon: 'shopping-cart-o', iconBg: '#FFF7ED', iconColor: '#F97316' },
-  { label: '转化率',   value: '3.24%',    trend: -2.1, icon: 'chart-trending-o', iconBg: '#FEF2F2', iconColor: '#EF4444' },
-]
+const overview = reactive({
+  gmv: 0,
+  userCount: 0,
+  memberCount: 0,
+  orderCount: 0,
+})
+
+function formatNumber(val) {
+  if (val === undefined || val === null) return '0'
+  return Number(val).toLocaleString()
+}
+
+onMounted(() => {
+  loadOverview()
+})
+
+const loadOverview = async () => {
+  try {
+    const res = await api.post('/admin/pinball/statistics/homeOverview')
+    if (res.code === 200 && res.data) {
+      overview.gmv = res.data.gmv ?? 0
+      overview.userCount = res.data.userCount ?? 0
+      overview.memberCount = res.data.memberCount ?? 0
+      overview.orderCount = res.data.orderCount ?? 0
+    }
+  } catch (e) {
+    // silent
+  }
+}
 
 const xDates = ['2/10','2/11','2/12','2/13','2/14','2/15','2/16','2/17','2/18']
 const barValues = [10, 13, 5, 22, 18, 17, 19, 17, 20]
@@ -114,7 +160,11 @@ const chartOption = {
 </script>
 
 <style scoped>
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
 
 .stat-card {
   background: #fff;
@@ -131,30 +181,59 @@ const chartOption = {
 }
 
 .stat-icon {
-  width: 40px; height: 40px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.stat-trend { font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 2px; }
-.stat-trend.up   { color: #10B981; }
-.stat-trend.down { color: #EF4444; }
-.stat-label { font-size: 12px; color: #999; margin-bottom: 4px; }
-.stat-value { font-size: 20px; font-weight: 700; color: #111; }
+.stat-label {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
 
 .chart-card {
-  background: #fff; border-radius: 16px; padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.05);
 }
 
 .chart-header {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
-.chart-legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #666; }
-.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
 .dot.blue { background: #2563EB; }
 .dot.teal { background: #10B981; }
 .dot.purple { background: #6366f1; }
 
-.chart { height: 180px; }
+.chart {
+  height: 180px;
+}
 </style>

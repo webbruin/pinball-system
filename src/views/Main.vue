@@ -17,17 +17,15 @@ const router = useRouter()
 const route = useRoute()
 
 const tabs = [
-  { path: '/home',    icon: 'apps-o',         label: '首页' },
-  { path: '/category',    icon: 'shop-o',           label: '分类' },
-  { path: '/product', icon: 'goods-collect-o',label: '商品' },
-  // { path: '/advert',  icon: 'volume-o',       label: '广告' },
-  // { path: '/user',    icon: 'friends-o',      label: '用户' },
-  // { path: '/member',  icon: 'vip-card-o',     label: '会员' },
-  { path: '/room-type',    icon: 'fire-o',           label: '类型' },
-  { path: '/room',    icon: 'desktop-o',           label: '房间' },
+  { path: '/home',       icon: 'apps-o',           label: '首页' },
+  { path: '/category',   icon: 'shop-o',           label: '分类' },
+  { path: '/product',    icon: 'goods-collect-o',  label: '商品' },
+  { path: '/recharge',   icon: 'gold-coin-o',      label: '充值' },
+  { path: '/member',     icon: 'vip-card-o',       label: '会员' },
+  { path: '/user',       icon: 'friends-o',        label: '用户' },
   { path: '/sign-in',    icon: 'gift-o',           label: '签到' },
-  { path: '/banner',    icon: 'photo-o',           label: '广告' },
-  { path: '/invitation',    icon: 'friends-o',           label: '邀请' },
+  { path: '/banner',     icon: 'photo-o',          label: '广告' },
+  { path: '/invitation', icon: 'friends-o',        label: '邀请' },
 ]
 
 const active = ref(0)
