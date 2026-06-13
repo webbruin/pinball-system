@@ -734,3 +734,35 @@ base
         orderCount	订单总量：成功充值订单数	
         userCount	用户数：已注册未删除用户数	
       message	
+十.MQTT消息日志
+  1.分页查询MQTT消息日志
+    接口：/admin/pinball/mqttLog/page
+    入参：
+      beginTime	创建时间起			
+      cmd	指令码			
+      current	当前页			
+      deviceId	设备ID			
+      direction	方向：0-下行发送，1-上行接收			
+      endTime	创建时间止			
+      pageSize	每页大小			
+      sortField	排序字段集合			
+        asc				
+        column				
+      status	处理状态：0-成功，1-失败
+    出参：
+      code
+      data
+        current	当前页
+        data	返回数据	array
+          cmd	指令码		
+          createTime	创建时间		
+          deviceId	设备ID		
+          direction	方向：0-下行发送，1-上行接收		
+          errorMsg	错误信息		
+          logId	日志ID		
+          payload	完整报文(JSON)		
+          status	处理状态：0-成功，1-失败		
+          topic	MQTT主题		
+        pageSize	每页大小
+        total	总条数
+      message

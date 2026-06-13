@@ -51,6 +51,7 @@ const tabs = [
   { path: '/sign-in',    icon: 'gift-o',           label: '签到奖励' },
   { path: '/banner',     icon: 'photo-o',          label: 'Banner广告' },
   { path: '/invitation', icon: 'friends-o',        label: '邀请好友' },
+  { path: '/mqtt-log',   icon: 'exchange-o',       label: 'MQTT日志' },
 ]
 
 function navigate(path) {
