@@ -28,8 +28,8 @@
 
       <!-- 时间范围 -->
       <div class="filter-row">
-        <van-field v-model="params.beginTime" label="开始时间" placeholder="如 2024-01-01" style="flex:1;padding:0" />
-        <van-field v-model="params.endTime" label="结束时间" placeholder="如 2024-12-31" style="flex:1;padding:0" />
+        <van-field v-model="beginTimeDisplay" readonly label="起" placeholder="请选择" style="flex:1;padding:0" @click="showBeginTime = true" label-width="20px" />
+        <van-field v-model="endTimeDisplay" readonly label="止" placeholder="请选择" style="flex:1;padding:0" @click="showEndTime = true" label-width="20px" />
         <van-button type="primary" size="small" @click="onSearch" style="flex-shrink:0">查询</van-button>
       </div>
 
@@ -100,6 +100,14 @@
     <van-popup v-model:show="showFilterStatus" round position="bottom">
       <van-picker :columns="logStatusOpts" show-toolbar title="筛选状态" @confirm="onFilterStatusConfirm" @cancel="showFilterStatus = false" />
     </van-popup>
+
+    <!-- 日期选择器 -->
+    <van-popup v-model:show="showBeginTime" round position="bottom">
+      <van-date-picker v-model="beginTimeValue" title="选择开始时间" @confirm="onBeginTimeConfirm" @cancel="showBeginTime = false" />
+    </van-popup>
+    <van-popup v-model:show="showEndTime" round position="bottom">
+      <van-date-picker v-model="endTimeValue" title="选择结束时间" @confirm="onEndTimeConfirm" @cancel="showEndTime = false" />
+    </van-popup>
   </div>
 </template>
 
@@ -132,6 +140,26 @@ const logStatusOpts = [
 
 const showFilterDirection = ref(false)
 const showFilterStatus = ref(false)
+
+const showBeginTime = ref(false)
+const showEndTime = ref(false)
+const beginTimeValue = ref([])
+const endTimeValue = ref([])
+
+const beginTimeDisplay = computed(() => params.value.beginTime || '')
+const endTimeDisplay = computed(() => params.value.endTime || '')
+
+function onBeginTimeConfirm({ selectedValues }) {
+  beginTimeValue.value = selectedValues
+  params.value.beginTime = selectedValues.join('-')
+  showBeginTime.value = false
+}
+
+function onEndTimeConfirm({ selectedValues }) {
+  endTimeValue.value = selectedValues
+  params.value.endTime = selectedValues.join('-')
+  showEndTime.value = false
+}
 
 const filterDirectionLabel = computed(() => {
   const found = directionOpts.find(o => o.value === params.value.direction)

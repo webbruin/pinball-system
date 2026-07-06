@@ -766,3 +766,123 @@ base
         pageSize	每页大小
         total	总条数
       message
+十一.订单管理
+  1.分页查询订单
+    接口：/admin/pinball/shop/order/page
+    入参：
+      createTimeEnd	创建时间止（含）			
+      createTimeStart	创建时间起（含）			
+      current	当前页			
+      orderId	订单号（模糊查询）			
+      orderStatus	订单状态：0-待支付，1-已支付，2-已发货，3-已收货，4-退款中，5-已退款，6-已关闭
+      pageSize	每页大小			
+      recipientPhone	收货人电话（模糊查询）			
+      sortField	排序字段集合			
+        asc				
+        column		
+    出参：
+      code
+      data
+        current	当前页
+        data	array
+          createTime	创建时间		
+          firstProductImage	商品主图（第一个商品）		
+          firstProductName	商品名称（第一个商品，冗余展示）		
+          memberPointAmount	会员积分支付金额		
+          orderId	订单号		
+          orderStatus	订单状态：0-待支付，1-已支付，2-已发货，3-已收货，4-退款中，5-已退款，6-已关闭		
+          payAmount	实付积分卡数		
+          pointCardAmount	积分卡支付金额		
+          totalAmount	商品总积分卡数		
+          totalQuantity	商品总数		
+        pageSize	每页大小
+        total	总条数
+      message
+  2.订单详情
+    接口：/admin/pinball/shop/order/detail
+    入参：
+      orderId	订单号
+    出参：
+      code
+      data object
+        createTime	创建时间	
+        items	订单明细列表	array	
+          pointType	支付方式：0-积分卡，1-会员积分		
+          price	下单时单价		
+          productImage	商品主图		
+          productName	商品名称		
+          quantity	数量		
+          skuName	规格名称		
+        logistics	物流信息	object
+          lastQueryTime	最后查询时间		
+          logisticsCompany	快递公司名称		
+          logisticsNo	物流单号		
+          logisticsStatus	最新物流状态		
+          trackingJson	快递100轨迹JSON		
+        orderId	订单号		
+        orderStatus	订单状态：0-待支付，1-已支付，2-已发货，3-已收货，4-退款中，5-已退款，6-已关闭	
+        payAmount	实付积分卡数	
+        payTime	支付时间	
+        recipientAddress	收货详细地址		
+        recipientName	收货人姓名		
+        recipientPhone	收货人电话		
+        refund	退款信息	object
+          auditRemark	审核备注		
+          refundAmount	退款积分卡数		
+          refundId	退款ID		
+          refundReason	退款原因		
+          refundStatus	退款状态：0-待审核，1-已同意，2-已拒绝，3-已完成		
+          refundTime	退款完成时间		
+        remark	用户备注		
+        totalAmount	商品总积分卡数	
+      message
+  3.录入物流单号（发货）
+    接口：/admin/pinball/shop/logistics/save
+    入参：
+      logisticsCompany	快递公司名称			
+      logisticsCompanyCode	快递100公司编码（如yuantong），参考快递100编码表			
+      logisticsNo	物流单号			
+      orderId	订单号
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  4.分页查询退款申请
+    接口：/admin/pinball/shop/refund/page
+    入参：
+      createTimeEnd	创建时间止（含）			
+      createTimeStart	创建时间起（含）			
+      current	当前页			
+      orderId	订单号（模糊查询）			
+      pageSize	每页大小			
+      refundStatus	退款状态：0-待审核，1-已同意，2-已拒绝，3-已完成			
+      sortField	排序字段集合			
+        asc				
+        column				
+      userId	用户ID
+    出参：
+      code
+      data
+        current
+        data	array
+          auditRemark	审核备注		
+          refundAmount	退款积分卡数		
+          refundId	退款ID		
+          refundReason	退款原因		
+          refundStatus	退款状态：0-待审核，1-已同意，2-已拒绝，3-已完成		
+          refundTime	退款完成时间		
+        pageSize	每页大小	
+        total	总条数	
+      message
+  5.审核退款
+    接口：/admin/pinball/shop/refund/audit
+    入参：
+      approved	审核结果：1-同意，2-拒绝			
+      auditRemark	审核备注			
+      refundId	退款ID
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }

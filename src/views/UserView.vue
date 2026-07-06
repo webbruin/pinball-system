@@ -481,6 +481,7 @@ function removeUser(userId) {
   align-items: center;
   gap: 6px;
   margin-top: 4px;
+  
 }
 
 .user-meta {
@@ -531,5 +532,9 @@ function removeUser(userId) {
 .popup-wrap {
   overflow-y: auto;
   max-height: 90vh;
+}
+
+.van-tag {
+  white-space: nowrap;
 }
 </style>

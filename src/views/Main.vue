@@ -43,8 +43,11 @@ const showDrawer = ref(false)
 
 const tabs = [
   { path: '/home',       icon: 'apps-o',           label: '首页' },
+  { path: '/room-type',  icon: 'cluster-o',        label: '房间类型' },
+  { path: '/room',       icon: 'wap-home-o',       label: '房间管理' },
   { path: '/category',   icon: 'shop-o',           label: '分类管理' },
   { path: '/product',    icon: 'goods-collect-o',  label: '商品管理' },
+  { path: '/order',      icon: 'orders-o',         label: '订单管理' },
   { path: '/recharge',   icon: 'gold-coin-o',      label: '充值套餐' },
   { path: '/member',     icon: 'vip-card-o',       label: '会员等级' },
   { path: '/user',       icon: 'friends-o',        label: '用户管理' },
@@ -62,7 +65,7 @@ function navigate(path) {
 
 <style scoped>
 .content {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
 }

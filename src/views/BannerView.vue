@@ -86,9 +86,12 @@
               :rules="[{ required: true, message: '请填写排序号' }]"
             />
             <van-field
-              v-model="form.expireTime"
+              v-model="expireTimeDisplay"
+              is-link
+              readonly
               label="过期时间"
               placeholder="留空表示永久有效"
+              @click="showExpireTime = true"
             />
             <div class="upload-field">
               <span class="upload-label">Banner图片</span>
@@ -108,11 +111,16 @@
         </van-form>
       </div>
     </van-popup>
+
+    <!-- 过期时间选择器 -->
+    <van-popup v-model:show="showExpireTime" round position="bottom">
+      <van-date-picker v-model="expireTimeValue" title="选择过期时间" @confirm="onExpireTimeConfirm" @cancel="showExpireTime = false" />
+    </van-popup>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, computed } from 'vue'
 import { showConfirmDialog, showToast, showLoadingToast } from 'vant'
 import { onUploadRead } from '../utils/upload'
 
@@ -121,6 +129,15 @@ const banners = ref([])
 const showModal = ref(false)
 const submitLoading = ref(false)
 const imgFileList = ref([])
+const showExpireTime = ref(false)
+const expireTimeValue = ref([])
+const expireTimeDisplay = computed(() => form.expireTime || '')
+
+function onExpireTimeConfirm({ selectedValues }) {
+  expireTimeValue.value = selectedValues
+  form.expireTime = selectedValues.join('-') + ' 23:59:59'
+  showExpireTime.value = false
+}
 const form = reactive({
   id: '',
   title: '',

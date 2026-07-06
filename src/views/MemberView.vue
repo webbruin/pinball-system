@@ -446,3 +446,8 @@ const assignLevel = async () => {
   max-height: 90vh;
 }
 </style>
+<style>
+.van-icon {
+  height: auto;
+}
+</style>
