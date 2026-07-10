@@ -105,11 +105,11 @@
           </van-cell-group>
 
           <div class="detail-actions">
-            <van-button plain icon="edit" size="small" style="flex:1" @click="openEditDialog">编辑资料</van-button>
-            <van-button plain icon="gem-o" size="small" style="flex:1" type="primary" @click="openGrant('marble')">发放弹珠</van-button>
-            <van-button plain icon="points" size="small" style="flex:1" type="primary" @click="openGrant('memberPoint')">发放积分</van-button>
-            <van-button plain icon="coupon-o" size="small" style="flex:1" type="primary" @click="openGrant('pointCard')">发积分卡</van-button>
-            <van-button plain icon="delete-o" size="small" color="#EF4444" style="flex:1" @click="removeUser(detail.userId)">删除</van-button>
+            <van-button plain size="small" style="flex:1" @click="openEditDialog">编辑资料</van-button>
+            <van-button plain size="small" style="flex:1" type="primary" @click="openGrant('marble')">发放弹珠</van-button>
+            <van-button plain size="small" style="flex:1" type="primary" @click="openGrant('memberPoint')">发放积分</van-button>
+            <van-button plain size="small" style="flex:1" type="primary" @click="openGrant('pointCard')">发积分卡</van-button>
+            <van-button plain size="small" color="#EF4444" style="flex:1" @click="removeUser(detail.userId)">删除</van-button>
           </div>
         </div>
       </div>
@@ -527,6 +527,9 @@ function removeUser(userId) {
   flex-wrap: wrap;
   gap: 8px;
   padding: 16px;
+}
+.detail-actions .van-button {
+  white-space: nowrap;
 }
 
 .popup-wrap {

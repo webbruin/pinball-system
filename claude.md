@@ -599,7 +599,7 @@ base
       levelValue	会员等级			
       nickName	用户昵称（模糊查询）			
       pageSize	每页大小			
-      phoneNumber	手机号码（模糊查询）			
+      phone	手机号码（模糊查询）			
       sortField	排序字段集合			
         asc				
         column				
@@ -620,7 +620,7 @@ base
           marbleAmount	弹珠余额		
           memberPointAmount	会员积分余额		
           nickName	用户昵称		
-          phoneNumber	手机号码		
+          phone	手机号码		
           pointCardAmount	积分卡余额		
           status	帐号状态：1-正常，0-停用		
           totalRechargeAmount	充值总金额（元，统计成功充值订单）	
@@ -645,7 +645,7 @@ base
         marbleAmount	弹珠余额		
         memberPointAmount	会员积分余额		
         nickName	用户昵称		
-        phoneNumber	手机号码		
+        phone	手机号码		
         pointCardAmount	积分卡余额		
         status	帐号状态：1-正常，0-停用		
         totalRechargeAmount	充值总金额（元，统计成功充值订单）	
@@ -881,6 +881,93 @@ base
       approved	审核结果：1-同意，2-拒绝			
       auditRemark	审核备注			
       refundId	退款ID
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+十二.提现管理
+  1.审核提现
+    接口：/admin/pinball/withdraw/audit
+    入参：
+      auditRemark	审核备注
+      auditResult	审核结果：1-通过，2-拒绝
+      withdrawNo	提现单号
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  2.提现记录详情
+    接口：/admin/pinball/withdraw/log/detail
+    入参：
+      withdrawNo	提现单号
+    出参：
+      code
+      data
+        actualAmount	实际转账金额		
+        applyTime	申请时间	
+        auditTime	审核时间	
+        auditUserName	审核人姓名		
+        failReason	失败或拒绝原因		
+        feeAmount	手续费金额		
+        finishTime	完成时间	
+        transferTime	发起转账时间	
+        userId	用户ID	
+        withdrawAmount	申请提现金额		
+        withdrawChannel	提现渠道		
+        withdrawId	提现记录ID	
+        withdrawNo	平台提现单号		
+        withdrawStatus	提现状态：0-待审核，1-转账中，2-提现成功，3-提现失败，4-审核拒绝，5-用户取消		
+      message
+  3.分页查询提现记录
+    接口：/admin/pinball/withdraw/log/page
+    入参：
+      applyTimeEnd	申请时间止			
+      applyTimeStart	申请时间起			
+      current	当前页			
+      pageSize	每页大小			
+      sortField	排序字段集合			
+        asc				
+        column				
+      userId	用户ID			
+      withdrawNo	提现单号			
+      withdrawStatus	提现状态：0-待审核，1-转账中，2-提现成功，3-提现失败，4-审核拒绝，5-用户取消
+    出参：
+      code			
+      data
+        current	当前页	
+        data	返回数据	array
+          actualAmount	实际转账金额		
+          applyTime	申请时间		
+          auditTime	审核时间		
+          auditUserName	审核人姓名		
+          failReason	失败或拒绝原因		
+          feeAmount	手续费金额		
+          finishTime	完成时间		
+          transferTime	发起转账时间		
+          userId	用户ID		
+          withdrawAmount	申请提现金额		
+          withdrawChannel	提现渠道		
+          withdrawId	提现记录ID		
+          withdrawNo	平台提现单号		
+          withdrawStatus	提现状态：0-待审核，1-转账中，2-提现成功，3-提现失败，4-审核拒绝，5-用户取消		
+        pageSize	每页大小	
+        total	总条数	
+      message
+  4.主动查询支付宝转账状态
+    接口：/admin/pinball/withdraw/queryTransfer
+    入参：
+      withdrawNo	提现单号
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  5.重试支付宝转账
+    接口：/admin/pinball/withdraw/retryTransfer
+    入参：
+      withdrawNo	提现单号
     出参：
       {
         "code": 0,
