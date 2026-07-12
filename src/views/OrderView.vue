@@ -96,6 +96,13 @@
                       plain
                       @click="openAudit(item)"
                     >审核</van-button>
+                    <van-button
+                      v-if="item.refundStatus === 1"
+                      type="success"
+                      size="small"
+                      plain
+                      @click="completeRefund(item)"
+                    >完成退款</van-button>
                   </div>
                 </div>
                 <van-empty v-if="!refunds.length && !refundLoading" description="暂无退款申请" style="padding-top:40px" />
@@ -565,6 +572,23 @@ const submitAudit = async () => {
     }
   } catch (e) {
     auditLoading.value = false
+    showToast('系统错误')
+  }
+}
+
+const completeRefund = async (item) => {
+  const loadingToast = showLoadingToast({ message: '处理中', forbidClick: true, duration: 0 })
+  try {
+    const res = await api.post('/admin/pinball/shop/refund/complete', { refundId: item.refundId })
+    loadingToast.close()
+    if (res.code === 200) {
+      showToast('退款已完成')
+      onRefundRefresh()
+    } else {
+      showToast(res.message)
+    }
+  } catch (e) {
+    loadingToast.close()
     showToast('系统错误')
   }
 }

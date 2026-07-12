@@ -886,6 +886,15 @@ base
         "code": 0,
         "message": ""
       }
+  6.完成退款
+    接口：/admin/pinball/shop/refund/complete
+    入参：
+      refundId	退款ID
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
 十二.提现管理
   1.审核提现
     接口：/admin/pinball/withdraw/audit
