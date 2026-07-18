@@ -22,35 +22,33 @@
         </div>
       </div>
 
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-          <div class="section" style="margin-bottom:16px">
-            <div class="recharge-card" v-for="item in list" :key="item.packageId">
-              <div class="recharge-header">
-                <div class="recharge-name">{{ item.packageName }}</div>
-                <van-switch v-model="item.status" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(item)" />
-              </div>
-              <div class="recharge-price">¥{{ item.payAmount }}</div>
-              <div class="recharge-detail">
-                <span class="detail-item">弹珠 ×{{ item.marbleAmount }}</span>
-                <span class="detail-item" v-if="item.giftMarbleAmount">赠送弹珠 +{{ item.giftMarbleAmount }}</span>
-                <span class="detail-item" v-if="item.giftMemberPointAmount">赠送积分 +{{ item.giftMemberPointAmount }}</span>
-                <span class="detail-item" v-if="item.giftPointCardAmount">赠送积分卡 +{{ item.giftPointCardAmount }}</span>
-              </div>
-              <div class="recharge-meta">
-                <span class="meta-text" v-if="item.remark">{{ item.remark }}</span>
-                <span class="meta-text gray">排序: {{ item.sortOrder }}</span>
-                <span class="meta-text gray">{{ item.createTime }}</span>
-              </div>
-              <div class="recharge-actions">
-                <van-button plain icon="edit" size="small" style="flex:1" @click="openEdit(item)">编辑</van-button>
-                <van-button plain icon="delete-o" size="small" color="#EF4444" style="flex:1" @click="removeItem(item.packageId)">删除</van-button>
-              </div>
+      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <div class="section" style="margin-bottom:16px">
+          <div class="recharge-card" v-for="item in list" :key="item.packageId">
+            <div class="recharge-header">
+              <div class="recharge-name">{{ item.packageName }}</div>
+              <van-switch v-model="item.status" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(item)" />
             </div>
-            <van-empty v-if="!list.length && !loading" description="暂无套餐数据" style="padding-top:40px" />
+            <div class="recharge-price">¥{{ item.payAmount }}</div>
+            <div class="recharge-detail">
+              <span class="detail-item">弹珠 ×{{ item.marbleAmount }}</span>
+              <span class="detail-item" v-if="item.giftMarbleAmount">赠送弹珠 +{{ item.giftMarbleAmount }}</span>
+              <span class="detail-item" v-if="item.giftMemberPointAmount">赠送积分 +{{ item.giftMemberPointAmount }}</span>
+              <span class="detail-item" v-if="item.giftPointCardAmount">赠送积分卡 +{{ item.giftPointCardAmount }}</span>
+            </div>
+            <div class="recharge-meta">
+              <span class="meta-text" v-if="item.remark">{{ item.remark }}</span>
+              <span class="meta-text gray">排序: {{ item.sortOrder }}</span>
+              <span class="meta-text gray">{{ item.createTime }}</span>
+            </div>
+            <div class="recharge-actions">
+              <van-button plain icon="edit" size="small" style="flex:1" @click="openEdit(item)">编辑</van-button>
+              <van-button plain icon="delete-o" size="small" color="#EF4444" style="flex:1" @click="removeItem(item.packageId)">删除</van-button>
+            </div>
           </div>
-        </van-list>
-      </van-pull-refresh>
+          <van-empty v-if="!list.length && !loading" description="暂无套餐数据" style="padding-top:40px" />
+        </div>
+      </van-list>
     </div>
 
     <!-- 新增/编辑弹窗 -->
@@ -118,7 +116,6 @@ const filterStatusLabel = computed(() => {
 })
 
 const list = ref([])
-const refreshing = ref(false)
 const loading = ref(false)
 const finished = ref(false)
 const total = ref(0)
@@ -176,7 +173,7 @@ const getList = async (isRefresh) => {
 }
 
 function onRefresh() {
-  getList(true).finally(() => { refreshing.value = false })
+  getList(true)
 }
 
 function onLoad() {

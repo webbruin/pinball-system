@@ -26,65 +26,63 @@
         <van-button type="primary" size="small" @click="onSearch">查询</van-button>
       </div>
 
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-          <div class="section" style="margin-bottom:16px">
-            <div class="withdraw-card" v-for="item in list" :key="item.withdrawId" @click="openDetail(item)">
-              <div class="card-header">
-                <span class="card-no">{{ item.withdrawNo || '-' }}</span>
-                <van-tag size="small" :type="statusType(item.withdrawStatus)">
-                  {{ statusMap[item.withdrawStatus] || '-' }}
-                </van-tag>
+      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <div class="section" style="margin-bottom:16px">
+          <div class="withdraw-card" v-for="item in list" :key="item.withdrawId" @click="openDetail(item)">
+            <div class="card-header">
+              <span class="card-no">{{ item.withdrawNo || '-' }}</span>
+              <van-tag size="small" :type="statusType(item.withdrawStatus)">
+                {{ statusMap[item.withdrawStatus] || '-' }}
+              </van-tag>
+            </div>
+            <div class="card-body">
+              <div class="card-row">
+                <span class="card-label">用户ID</span>
+                <span>{{ item.userId }}</span>
               </div>
-              <div class="card-body">
-                <div class="card-row">
-                  <span class="card-label">用户ID</span>
-                  <span>{{ item.userId }}</span>
-                </div>
-                <div class="card-row">
-                  <span class="card-label">申请金额</span>
-                  <span class="card-amount">{{ item.withdrawAmount ?? 0 }} 元</span>
-                </div>
-                <div class="card-row">
-                  <span class="card-label">手续费</span>
-                  <span>{{ item.feeAmount ?? 0 }} 元</span>
-                </div>
-                <div class="card-row">
-                  <span class="card-label">提现渠道</span>
-                  <span>{{ item.withdrawChannel || '-' }}</span>
-                </div>
+              <div class="card-row">
+                <span class="card-label">申请金额</span>
+                <span class="card-amount">{{ item.withdrawAmount ?? 0 }} 元</span>
               </div>
-              <div class="card-footer">
-                <span class="card-time">{{ item.applyTime || '-' }}</span>
-                <div class="card-actions">
-                  <van-button
-                    v-if="item.withdrawStatus === 0"
-                    type="primary"
-                    size="small"
-                    plain
-                    @click.stop="openAudit(item)"
-                  >审核</van-button>
-                  <van-button
-                    v-if="item.withdrawStatus === 1"
-                    type="default"
-                    size="small"
-                    plain
-                    @click.stop="queryTransfer(item)"
-                  >查转账</van-button>
-                  <van-button
-                    v-if="item.withdrawStatus === 3"
-                    type="warning"
-                    size="small"
-                    plain
-                    @click.stop="retryTransfer(item)"
-                  >重试转账</van-button>
-                </div>
+              <div class="card-row">
+                <span class="card-label">手续费</span>
+                <span>{{ item.feeAmount ?? 0 }} 元</span>
+              </div>
+              <div class="card-row">
+                <span class="card-label">提现渠道</span>
+                <span>{{ item.withdrawChannel || '-' }}</span>
               </div>
             </div>
-            <van-empty v-if="!list.length && !loading" description="暂无提现记录" style="padding-top:40px" />
+            <div class="card-footer">
+              <span class="card-time">{{ item.applyTime || '-' }}</span>
+              <div class="card-actions">
+                <van-button
+                  v-if="item.withdrawStatus === 0"
+                  type="primary"
+                  size="small"
+                  plain
+                  @click.stop="openAudit(item)"
+                >审核</van-button>
+                <van-button
+                  v-if="item.withdrawStatus === 1"
+                  type="default"
+                  size="small"
+                  plain
+                  @click.stop="queryTransfer(item)"
+                >查转账</van-button>
+                <van-button
+                  v-if="item.withdrawStatus === 3"
+                  type="warning"
+                  size="small"
+                  plain
+                  @click.stop="retryTransfer(item)"
+                >重试转账</van-button>
+              </div>
+            </div>
           </div>
-        </van-list>
-      </van-pull-refresh>
+          <van-empty v-if="!list.length && !loading" description="暂无提现记录" style="padding-top:40px" />
+        </div>
+      </van-list>
     </div>
 
     <!-- 详情弹窗 -->
@@ -240,7 +238,6 @@ function onEndConfirm({ selectedValues }) {
 }
 
 const list = ref([])
-const refreshing = ref(false)
 const loading = ref(false)
 const finished = ref(false)
 let total = 0
@@ -285,7 +282,7 @@ const getList = async (isRefresh) => {
 }
 
 function onRefresh() {
-  getList(true).finally(() => { refreshing.value = false })
+  getList(true)
 }
 
 function onLoad() {

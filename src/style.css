@@ -14,7 +14,12 @@ body {
 
 #app {
   width: 393px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  position: fixed;
+  /* left: 0;
+  right: 0; */
+  top: 0;
+  bottom: 0;
   background: #f5f6fa;
   position: relative;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
@@ -66,4 +71,8 @@ body {
 /* 统一卡片 */
 .van-cell-group--inset {
   margin: 12px 16px 0;
+}
+
+.popup-wrap {
+  padding-bottom: 100px !important;
 }

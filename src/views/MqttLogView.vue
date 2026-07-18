@@ -33,31 +33,29 @@
         <van-button type="primary" size="small" @click="onSearch" style="flex-shrink:0">查询</van-button>
       </div>
 
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-          <div class="section" style="margin-bottom:16px">
-            <div class="log-card" v-for="item in logs" :key="item.logId" @click="openDetail(item)">
-              <div class="log-header">
-                <span class="log-cmd">{{ item.cmd || '-' }}</span>
-                <van-tag size="small" :type="item.status === 0 ? 'success' : 'danger'">
-                  {{ item.status === 0 ? '成功' : '失败' }}
-                </van-tag>
-              </div>
-              <div class="log-meta">
-                <span class="meta-item">设备: {{ item.deviceId || '-' }}</span>
-                <span class="meta-item">{{ item.topic || '-' }}</span>
-              </div>
-              <div class="log-footer">
-                <van-tag size="small" :type="item.direction === 0 ? 'primary' : 'warning'" plain>
-                  {{ item.direction === 0 ? '下行发送' : '上行接收' }}
-                </van-tag>
-                <span class="log-time">{{ item.createTime || '-' }}</span>
-              </div>
+      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <div class="section" style="margin-bottom:16px">
+          <div class="log-card" v-for="item in logs" :key="item.logId" @click="openDetail(item)">
+            <div class="log-header">
+              <span class="log-cmd">{{ item.cmd || '-' }}</span>
+              <van-tag size="small" :type="item.status === 0 ? 'success' : 'danger'">
+                {{ item.status === 0 ? '成功' : '失败' }}
+              </van-tag>
             </div>
-            <van-empty v-if="!logs.length && !loading" description="暂无日志数据" style="padding-top:40px" />
+            <div class="log-meta">
+              <span class="meta-item">设备: {{ item.deviceId || '-' }}</span>
+              <span class="meta-item">{{ item.topic || '-' }}</span>
+            </div>
+            <div class="log-footer">
+              <van-tag size="small" :type="item.direction === 0 ? 'primary' : 'warning'" plain>
+                {{ item.direction === 0 ? '下行发送' : '上行接收' }}
+              </van-tag>
+              <span class="log-time">{{ item.createTime || '-' }}</span>
+            </div>
           </div>
-        </van-list>
-      </van-pull-refresh>
+          <van-empty v-if="!logs.length && !loading" description="暂无日志数据" style="padding-top:40px" />
+        </div>
+      </van-list>
     </div>
 
     <!-- 详情弹窗 -->
@@ -172,7 +170,6 @@ const filterStatusLabel = computed(() => {
 })
 
 const logs = ref([])
-const refreshing = ref(false)
 const loading = ref(false)
 const finished = ref(false)
 const total = ref(0)
@@ -215,7 +212,7 @@ const getList = async (isRefresh) => {
 }
 
 function onRefresh() {
-  getList(true).finally(() => { refreshing.value = false })
+  getList(true)
 }
 
 function onLoad() {

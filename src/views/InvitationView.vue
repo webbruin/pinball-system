@@ -24,53 +24,51 @@
       </div>
 
       <!-- 活动列表 -->
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list
-          v-model:loading="loading"
-          :finished="finished"
-          @load="onLoad"
-        >
-          <div class="section" style="margin-bottom:16px">
-            <div class="activity-card" v-for="item in activities" :key="item.activityId">
-              <div class="activity-header">
-                <div class="activity-name">{{ item.activityName }}</div>
-                <van-switch v-model="item.enableFlag" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(item)" />
-              </div>
-              <div class="activity-desc" v-if="item.description">{{ item.description }}</div>
-              <div class="activity-time">
-                <van-icon name="clock-o" size="12" />
-                <span>{{ item.startTime || '-' }} ~ {{ item.endTime || '-' }}</span>
-              </div>
-              <div class="reward-row">
-                <span class="reward-item" v-if="item.rewardMarble">
-                  <van-icon name="gem-o" size="12" /> 弹珠×{{ item.rewardMarble }}
-                </span>
-                <span class="reward-item" v-if="item.rewardMemberPoint">
-                  <van-icon name="points" size="12" /> 会员积分×{{ item.rewardMemberPoint }}
-                </span>
-                <span class="reward-item" v-if="item.rewardPointCard">
-                  <van-icon name="coupon-o" size="12" /> 积分卡×{{ item.rewardPointCard }}
-                </span>
-                <span class="reward-item" v-if="item.rewardWithdrawAmount">
-                  <van-icon name="gold-coin-o" size="12" /> 提现¥{{ item.rewardWithdrawAmount }}
-                </span>
-              </div>
-              <div class="activity-extra">
-                <span class="extra-tag" v-if="item.inviteLimit > 0">邀请上限: {{ item.inviteLimit }}人</span>
-                <span class="extra-tag" v-if="item.inviteLimit === 0">邀请人数不限</span>
-                <span class="extra-tag" v-if="item.realNameRequired === 1">需实名</span>
-                <span class="extra-tag" v-if="item.rechargeRequired === 1">需充值</span>
-              </div>
-              <div class="activity-actions">
-                <van-button plain icon="edit" size="small" style="flex:1" @click="openEdit(item)">编辑</van-button>
-                <van-button plain icon="records-o" size="small" style="flex:1" type="primary" @click="openRecords(item)">记录</van-button>
-                <van-button plain icon="delete-o" size="small" color="#EF4444" style="flex:1" @click="removeActivity(item.activityId)">删除</van-button>
-              </div>
+      <van-list
+        v-model:loading="loading"
+        :finished="finished"
+        @load="onLoad"
+      >
+        <div class="section" style="margin-bottom:16px">
+          <div class="activity-card" v-for="item in activities" :key="item.activityId">
+            <div class="activity-header">
+              <div class="activity-name">{{ item.activityName }}</div>
+              <van-switch v-model="item.enableFlag" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(item)" />
             </div>
-            <van-empty v-if="!activities.length && !loading" description="暂无活动数据" style="padding-top:40px" />
+            <div class="activity-desc" v-if="item.description">{{ item.description }}</div>
+            <div class="activity-time">
+              <van-icon name="clock-o" size="12" />
+              <span>{{ item.startTime || '-' }} ~ {{ item.endTime || '-' }}</span>
+            </div>
+            <div class="reward-row">
+              <span class="reward-item" v-if="item.rewardMarble">
+                <van-icon name="gem-o" size="12" /> 弹珠×{{ item.rewardMarble }}
+              </span>
+              <span class="reward-item" v-if="item.rewardMemberPoint">
+                <van-icon name="points" size="12" /> 会员积分×{{ item.rewardMemberPoint }}
+              </span>
+              <span class="reward-item" v-if="item.rewardPointCard">
+                <van-icon name="coupon-o" size="12" /> 积分卡×{{ item.rewardPointCard }}
+              </span>
+              <span class="reward-item" v-if="item.rewardWithdrawAmount">
+                <van-icon name="gold-coin-o" size="12" /> 提现¥{{ item.rewardWithdrawAmount }}
+              </span>
+            </div>
+            <div class="activity-extra">
+              <span class="extra-tag" v-if="item.inviteLimit > 0">邀请上限: {{ item.inviteLimit }}人</span>
+              <span class="extra-tag" v-if="item.inviteLimit === 0">邀请人数不限</span>
+              <span class="extra-tag" v-if="item.realNameRequired === 1">需实名</span>
+              <span class="extra-tag" v-if="item.rechargeRequired === 1">需充值</span>
+            </div>
+            <div class="activity-actions">
+              <van-button plain icon="edit" size="small" style="flex:1" @click="openEdit(item)">编辑</van-button>
+              <van-button plain icon="records-o" size="small" style="flex:1" type="primary" @click="openRecords(item)">记录</van-button>
+              <van-button plain icon="delete-o" size="small" color="#EF4444" style="flex:1" @click="removeActivity(item.activityId)">删除</van-button>
+            </div>
           </div>
-        </van-list>
-      </van-pull-refresh>
+          <van-empty v-if="!activities.length && !loading" description="暂无活动数据" style="padding-top:40px" />
+        </div>
+      </van-list>
     </div>
 
     <!-- 新增/编辑弹窗 -->
@@ -314,7 +312,6 @@ const filterEnableLabel = computed(() => {
 
 // --- 活动列表 ---
 const activities = ref([])
-const refreshing = ref(false)
 const loading = ref(false)
 const finished = ref(false)
 const total = ref(0)
@@ -436,9 +433,7 @@ const getActivities = async (isRefresh) => {
 }
 
 function onRefresh() {
-  getActivities(true).finally(() => {
-    refreshing.value = false
-  })
+  getActivities(true)
 }
 
 async function onLoad() {

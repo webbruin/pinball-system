@@ -28,35 +28,33 @@
             <van-button type="primary" size="small" @click="onOrderSearch">查询</van-button>
           </div>
 
-          <van-pull-refresh v-model="orderRefreshing" @refresh="onOrderRefresh">
-            <van-list v-model:loading="orderLoading" :finished="orderFinished" finished-text="没有更多了" @load="onOrderLoad">
-              <div class="section" style="margin-bottom:16px">
-                <div class="order-card" v-for="item in orders" :key="item.orderId" @click="openOrderDetail(item)">
-                  <div class="order-header">
-                    <span class="order-id">#{{ item.orderId }}</span>
-                    <van-tag size="small" :type="orderStatusType(item.orderStatus)">
-                      {{ orderStatusMap[item.orderStatus] || '-' }}
-                    </van-tag>
-                  </div>
-                  <div class="order-body">
-                    <img v-if="item.firstProductImage" :src="item.firstProductImage" class="order-thumb" />
-                    <van-icon v-else name="shopping-cart-o" size="28" color="#ccc" class="order-thumb" />
-                    <div class="order-info">
-                      <div class="order-product-name">{{ item.firstProductName || '-' }}</div>
-                      <div class="order-meta">
-                        <span>数量: {{ item.totalQuantity ?? 0 }}</span>
-                        <span>实付: {{ item.payAmount ?? 0 }} 积分卡</span>
-                      </div>
+          <van-list v-model:loading="orderLoading" :finished="orderFinished" finished-text="没有更多了" @load="onOrderLoad">
+            <div class="section" style="margin-bottom:16px">
+              <div class="order-card" v-for="item in orders" :key="item.orderId" @click="openOrderDetail(item)">
+                <div class="order-header">
+                  <span class="order-id">#{{ item.orderId }}</span>
+                  <van-tag size="small" :type="orderStatusType(item.orderStatus)">
+                    {{ orderStatusMap[item.orderStatus] || '-' }}
+                  </van-tag>
+                </div>
+                <div class="order-body">
+                  <img v-if="item.firstProductImage" :src="item.firstProductImage" class="order-thumb" />
+                  <van-icon v-else name="shopping-cart-o" size="28" color="#ccc" class="order-thumb" />
+                  <div class="order-info">
+                    <div class="order-product-name">{{ item.firstProductName || '-' }}</div>
+                    <div class="order-meta">
+                      <span>数量: {{ item.totalQuantity ?? 0 }}</span>
+                      <span>实付: {{ item.payAmount ?? 0 }} 积分卡</span>
                     </div>
                   </div>
-                  <div class="order-footer">
-                    <span class="order-time">{{ item.createTime || '-' }}</span>
-                  </div>
                 </div>
-                <van-empty v-if="!orders.length && !orderLoading" description="暂无订单数据" style="padding-top:40px" />
+                <div class="order-footer">
+                  <span class="order-time">{{ item.createTime || '-' }}</span>
+                </div>
               </div>
-            </van-list>
-          </van-pull-refresh>
+              <van-empty v-if="!orders.length && !orderLoading" description="暂无订单数据" style="padding-top:40px" />
+            </div>
+          </van-list>
         </van-tab>
 
         <van-tab title="退款申请">
@@ -75,40 +73,38 @@
             <van-button type="primary" size="small" @click="onRefundSearch">查询</van-button>
           </div>
 
-          <van-pull-refresh v-model="refundRefreshing" @refresh="onRefundRefresh">
-            <van-list v-model:loading="refundLoading" :finished="refundFinished" finished-text="没有更多了" @load="onRefundLoad">
-              <div class="section" style="margin-bottom:16px">
-                <div class="refund-card" v-for="item in refunds" :key="item.refundId">
-                  <div class="refund-header">
-                    <span class="refund-amount">退款: {{ item.refundAmount }} 积分卡</span>
-                    <van-tag size="small" :type="refundStatusType(item.refundStatus)">
-                      {{ refundStatusMap[item.refundStatus] || '-' }}
-                    </van-tag>
-                  </div>
-                  <div class="refund-reason" v-if="item.refundReason">{{ item.refundReason }}</div>
-                  <div class="refund-meta" v-if="item.auditRemark">审核备注: {{ item.auditRemark }}</div>
-                  <div class="refund-footer">
-                    <span class="refund-time">{{ item.refundTime || '-' }}</span>
-                    <van-button
-                      v-if="item.refundStatus === 0"
-                      type="primary"
-                      size="small"
-                      plain
-                      @click="openAudit(item)"
-                    >审核</van-button>
-                    <van-button
-                      v-if="item.refundStatus === 1"
-                      type="success"
-                      size="small"
-                      plain
-                      @click="completeRefund(item)"
-                    >完成退款</van-button>
-                  </div>
+          <van-list v-model:loading="refundLoading" :finished="refundFinished" finished-text="没有更多了" @load="onRefundLoad">
+            <div class="section" style="margin-bottom:16px">
+              <div class="refund-card" v-for="item in refunds" :key="item.refundId">
+                <div class="refund-header">
+                  <span class="refund-amount">退款: {{ item.refundAmount }} 积分卡</span>
+                  <van-tag size="small" :type="refundStatusType(item.refundStatus)">
+                    {{ refundStatusMap[item.refundStatus] || '-' }}
+                  </van-tag>
                 </div>
-                <van-empty v-if="!refunds.length && !refundLoading" description="暂无退款申请" style="padding-top:40px" />
+                <div class="refund-reason" v-if="item.refundReason">{{ item.refundReason }}</div>
+                <div class="refund-meta" v-if="item.auditRemark">审核备注: {{ item.auditRemark }}</div>
+                <div class="refund-footer">
+                  <span class="refund-time">{{ item.refundTime || '-' }}</span>
+                  <van-button
+                    v-if="item.refundStatus === 0"
+                    type="primary"
+                    size="small"
+                    plain
+                    @click="openAudit(item)"
+                  >审核</van-button>
+                  <van-button
+                    v-if="item.refundStatus === 1"
+                    type="success"
+                    size="small"
+                    plain
+                    @click="completeRefund(item)"
+                  >完成退款</van-button>
+                </div>
               </div>
-            </van-list>
-          </van-pull-refresh>
+              <van-empty v-if="!refunds.length && !refundLoading" description="暂无退款申请" style="padding-top:40px" />
+            </div>
+          </van-list>
         </van-tab>
       </van-tabs>
     </div>
@@ -329,7 +325,6 @@ const orderStatusLabel = computed(() => {
 })
 
 const orders = ref([])
-const orderRefreshing = ref(false)
 const orderLoading = ref(false)
 const orderFinished = ref(false)
 const orderTotal = ref(0)
@@ -381,7 +376,6 @@ const refundStatusLabel = computed(() => {
 })
 
 const refunds = ref([])
-const refundRefreshing = ref(false)
 const refundLoading = ref(false)
 const refundFinished = ref(false)
 
@@ -445,7 +439,7 @@ const getOrders = async (isRefresh) => {
 }
 
 function onOrderRefresh() {
-  getOrders(true).finally(() => { orderRefreshing.value = false })
+  getOrders(true)
 }
 
 function onOrderLoad() {
@@ -488,7 +482,7 @@ const getRefunds = async (isRefresh) => {
 }
 
 function onRefundRefresh() {
-  getRefunds(true).finally(() => { refundRefreshing.value = false })
+  getRefunds(true)
 }
 
 function onRefundLoad() {

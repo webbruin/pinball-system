@@ -23,51 +23,49 @@
       </div>
 
       <!-- 商品列表 -->
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list
-          v-model:loading="loading"
-          :finished="finished"
-          finished-text="没有更多了"
-          @load="onLoad"
-        >
-          <div style="margin-top:8px">
-            <div class="product-card" v-for="item in products" :key="item.productId">
-              <van-swipe-cell>
-                <div class="product-content">
-                  <div class="product-img-wrap">
-                    <img v-if="item.mainImage" :src="item.mainImage" class="product-img" />
-                    <van-icon v-else name="photo-o" size="32" color="#ccc" />
+      <van-list
+        v-model:loading="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <div style="margin-top:8px">
+          <div class="product-card" v-for="item in products" :key="item.productId">
+            <van-swipe-cell>
+              <div class="product-content">
+                <div class="product-img-wrap">
+                  <img v-if="item.mainImage" :src="item.mainImage" class="product-img" />
+                  <van-icon v-else name="photo-o" size="32" color="#ccc" />
+                </div>
+                <div class="product-info">
+                  <div class="product-name">{{ item.productName }}</div>
+                  <div class="product-meta">
+                    <van-tag size="small" type="primary" plain>{{ getCategoryName(item.categoryId) }}</van-tag>
+                    <span class="meta-text" v-if="item.memberOnly === 1">
+                      <van-icon name="vip-card-o" size="12" /> 会员专属
+                    </span>
                   </div>
-                  <div class="product-info">
-                    <div class="product-name">{{ item.productName }}</div>
-                    <div class="product-meta">
-                      <van-tag size="small" type="primary" plain>{{ getCategoryName(item.categoryId) }}</van-tag>
-                      <span class="meta-text" v-if="item.memberOnly === 1">
-                        <van-icon name="vip-card-o" size="12" /> 会员专属
-                      </span>
-                    </div>
-                    <div class="product-price" v-if="item.minSkuPrice !== undefined">
-                      <span class="price-val">{{ item.minSkuPrice }}</span>
-                      <span class="price-unit">{{ item.minSkuPointType === 0 ? '积分卡' : '会员积分' }}</span>
-                    </div>
-                  </div>
-                  <div class="product-status">
-                    <van-switch v-model="item.status" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(item)" />
+                  <div class="product-price" v-if="item.minSkuPrice !== undefined">
+                    <span class="price-val">{{ item.minSkuPrice }}</span>
+                    <span class="price-unit">{{ item.minSkuPointType === 0 ? '积分卡' : '会员积分' }}</span>
                   </div>
                 </div>
-                <template #right>
-                  <van-button square type="danger" text="删除" @click="removeProduct(item.productId)" style="height:100%" />
-                </template>
-              </van-swipe-cell>
-              <div class="product-actions">
-                <van-button plain icon="edit" size="small" @click="openEdit(item)">编辑</van-button>
-                <van-button plain icon="orders-o" size="small" @click="openSku(item)">规格管理</van-button>
+                <div class="product-status">
+                  <van-switch v-model="item.status" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(item)" />
+                </div>
               </div>
+              <template #right>
+                <van-button square type="danger" text="删除" @click="removeProduct(item.productId)" style="height:100%" />
+              </template>
+            </van-swipe-cell>
+            <div class="product-actions">
+              <van-button plain icon="edit" size="small" @click="openEdit(item)">编辑</van-button>
+              <van-button plain icon="orders-o" size="small" @click="openSku(item)">规格管理</van-button>
             </div>
-            <van-empty v-if="!products.length && !loading" description="暂无商品数据" style="padding-top:40px" />
           </div>
-        </van-list>
-      </van-pull-refresh>
+          <van-empty v-if="!products.length && !loading" description="暂无商品数据" style="padding-top:40px" />
+        </div>
+      </van-list>
     </div>
 
     <!-- 新增/编辑商品弹窗 -->
@@ -336,7 +334,6 @@ const filterStatusLabel = computed(() => {
 
 // --- 商品列表 ---
 const products = ref([])
-const refreshing = ref(false)
 const loading = ref(false)
 const finished = ref(false)
 const total = ref(0)
@@ -443,9 +440,7 @@ const getProducts = async (isRefresh) => {
 }
 
 function onRefresh() {
-  getProducts(true).finally(() => {
-    refreshing.value = false
-  })
+  getProducts(true)
 }
 
 function onLoad() {

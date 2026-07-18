@@ -25,35 +25,33 @@
         </div>
       </div>
 
-      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-        <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-          <van-cell-group inset v-for="u in users" :key="u.userId" style="margin-top:8px">
-            <van-cell center @click="openDetail(u)">
-              <template #icon>
-                <div class="user-avatar">
-                  <img v-if="u.avatar" :src="u.avatar" class="avatar-img" />
-                  <span v-else>{{ (u.nickName || u.userName || '?')[0] }}</span>
-                </div>
-              </template>
-              <template #title>
-                <span class="user-name">{{ u.nickName || u.userName || '-' }}</span>
-              </template>
-              <template #label>
-                <div class="user-phone"><van-icon name="phone-o" size="11" /> {{ u.phoneNumber || '-' }}</div>
-                <div class="user-info-row">
-                  <van-tag size="small" type="primary" plain>{{ u.levelName || 'Lv.' + (u.levelValue || 0) }}</van-tag>
-                  <span class="user-meta">弹珠: {{ u.marbleAmount ?? 0 }}</span>
-                  <span class="user-meta gray">{{ u.createTime || '' }}</span>
-                </div>
-              </template>
-              <template #right-icon>
-                <van-switch v-model="u.status" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(u)" @click.stop />
-              </template>
-            </van-cell>
-          </van-cell-group>
-          <van-empty v-if="!users.length && !loading" description="暂无用户数据" style="padding-top:40px" />
-        </van-list>
-      </van-pull-refresh>
+      <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+        <van-cell-group inset v-for="u in users" :key="u.userId" style="margin-top:8px">
+          <van-cell center @click="openDetail(u)">
+            <template #icon>
+              <div class="user-avatar">
+                <img v-if="u.avatar" :src="u.avatar" class="avatar-img" />
+                <span v-else>{{ (u.nickName || u.userName || '?')[0] }}</span>
+              </div>
+            </template>
+            <template #title>
+              <span class="user-name">{{ u.nickName || u.userName || '-' }}</span>
+            </template>
+            <template #label>
+              <div class="user-phone"><van-icon name="phone-o" size="11" /> {{ u.phoneNumber || '-' }}</div>
+              <div class="user-info-row">
+                <van-tag size="small" type="primary" plain>{{ u.levelName || 'Lv.' + (u.levelValue || 0) }}</van-tag>
+                <span class="user-meta">弹珠: {{ u.marbleAmount ?? 0 }}</span>
+                <span class="user-meta gray">{{ u.createTime || '' }}</span>
+              </div>
+            </template>
+            <template #right-icon>
+              <van-switch v-model="u.status" :active-value="1" :inactive-value="0" size="20px" @change="toggleStatus(u)" @click.stop />
+            </template>
+          </van-cell>
+        </van-cell-group>
+        <van-empty v-if="!users.length && !loading" description="暂无用户数据" style="padding-top:40px" />
+      </van-list>
     </div>
 
     <!-- 筛选弹窗 -->
@@ -203,7 +201,6 @@ const filterStatusLabel = computed(() => {
 
 // --- 用户列表 ---
 const users = ref([])
-const refreshing = ref(false)
 const loading = ref(false)
 const finished = ref(false)
 const total = ref(0)
@@ -245,7 +242,7 @@ const getUserList = async (isRefresh) => {
 }
 
 function onRefresh() {
-  getUserList(true).finally(() => { refreshing.value = false })
+  getUserList(true)
 }
 
 function onLoad() {
