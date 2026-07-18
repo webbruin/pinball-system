@@ -5,7 +5,13 @@ import { showToast } from 'vant'
  * @param {File} file - 原生 File 对象
  * @returns {Promise<string>} 返回 filePathUrl
  */
+const MAX_SIZE = 3 * 1024 * 1024 // 3MB
+
 export async function uploadFile(file) {
+  if (file.size > MAX_SIZE) {
+    showToast('图片不能超过3MB')
+    throw new Error('图片不能超过3MB')
+  }
   const formData = new FormData()
   formData.append('file', file)
   const res = await api.post('/admin/pinball/file/upload', formData, {
