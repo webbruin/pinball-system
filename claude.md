@@ -16,6 +16,36 @@ base
       "message": ""
     }
 
+登录认证
+  1.获取图形验证码
+    接口：/captchaImage（GET）
+    入参：无
+    出参：
+      {
+        "code": 200,
+        "data": {
+          "img": "base64图片字符串",
+          "uuid": "验证码唯一标识"
+        },
+        "message": ""
+      }
+  2.登录系统
+    接口：/system/auth/login
+    入参：
+      username	用户名
+      password	密码（AES加密后传输，加密工具见 src/utils/aes.js）
+      code	图形验证码
+      uuid	验证码唯一标识
+    出参：
+      {
+        "code": 200,
+        "data": {
+          "access_token": "JWT令牌"
+        },
+        "message": ""
+      }
+    说明：token存储于localStorage，后续请求由api拦截器自动携带在headers.token中
+
 一.分类管理
   1.查询分类列表
     接口：admin/pinball/shop/category/list
@@ -977,6 +1007,139 @@ base
     接口：/admin/pinball/withdraw/retryTransfer
     入参：
       withdrawNo	提现单号
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+十三.房间类型管理
+  1.分页查询房间类型
+    接口：/admin/pinball/room/pageRoomType
+    入参：
+      current	当前页
+      pageSize	每页大小
+      roomTypeName	房间类型名称（模糊查询）
+      sortField	排序字段集合
+        asc
+        column
+    出参：
+      code
+      data
+        current	当前页
+        data	返回数据	array
+          ballOutRatio	出珠比例
+          cardLimit	积分卡上限
+          marblePerCard	几珠一卡
+          maxMarble	投珠上限
+          minMarble	投珠下限
+          mode	模式：1-出卡不出珠，2-既出卡又出珠
+          roomTypeId	房间类型ID
+          roomTypeName	房间类型名称
+        pageSize	每页大小
+        total	总条数
+      message
+  2.创建房间类型
+    接口：/admin/pinball/room/createRoomType
+    入参：
+      ballOutRatio	出珠比例
+      cardLimit	积分卡上限
+      marblePerCard	几珠一卡
+      maxMarble	投珠上限
+      minMarble	投珠下限
+      mode	模式：1-出卡不出珠，2-既出卡又出珠
+      roomTypeName	房间类型名称
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  3.修改房间类型
+    接口：/admin/pinball/room/updateRoomType
+    入参：
+      ballOutRatio	出珠比例
+      cardLimit	积分卡上限
+      marblePerCard	几珠一卡
+      maxMarble	投珠上限
+      minMarble	投珠下限
+      mode	模式：1-出卡不出珠，2-既出卡又出珠
+      roomTypeId	房间类型ID
+      roomTypeName	房间类型名称
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  4.删除房间类型
+    接口：/admin/pinball/room/deleteRoomType
+    入参：
+      roomTypeId	房间类型ID
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+十四.房间管理
+  1.分页查询房间
+    接口：/admin/pinball/room/pageRoom
+    入参：
+      current	当前页
+      onlineStatus	上线状态：0-关闭，1-开启（不传查全部）
+      pageSize	每页大小
+      roomName	房间名称（模糊查询）
+      sortField	排序字段集合
+        asc
+        column
+    出参：
+      code
+      data
+        current	当前页
+        data	返回数据	array
+          debugMode	是否开启调试：0-关闭，1-开启
+          description	房间描述
+          id	房间ID（编辑时作为roomId传入）
+          onlineStatus	上线状态：0-关闭，1-开启
+          roomName	房间名称
+          roomTypeId	房间类型ID
+          roomTypeName	房间类型名称
+          sort	推荐页序号
+          tencentRoomId	腾讯云房间ID
+          useStatus	使用状态：0-空闲，1-使用中，10-故障，11-下线
+        pageSize	每页大小
+        total	总条数
+      message
+  2.创建房间
+    接口：/admin/pinball/room/createRoom
+    入参：
+      debugMode	是否开启调试：0-关闭，1-开启
+      description	房间描述
+      roomName	房间名称
+      roomTypeId	房间类型ID
+      sort	推荐页序号
+      tencentRoomId	腾讯云房间ID
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  3.修改房间
+    接口：/admin/pinball/room/updateRoom
+    入参：
+      debugMode	是否开启调试：0-关闭，1-开启
+      description	房间描述
+      roomId	房间ID
+      roomName	房间名称
+      roomTypeId	房间类型ID
+      sort	推荐页序号
+      tencentRoomId	腾讯云房间ID
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+  4.删除房间
+    接口：/admin/pinball/room/deleteRoom
+    入参：
+      roomId	房间ID
     出参：
       {
         "code": 0,

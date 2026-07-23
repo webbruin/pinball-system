@@ -121,7 +121,7 @@ const handleLogin = async () => {
   login()
 }
 
-// 生成验证码
+// 生成图形验证码
 const captchaImage = async () => {
   try {
     const res = await api.get('/captchaImage')
