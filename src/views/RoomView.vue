@@ -48,7 +48,7 @@
                   <van-button plain size="small" icon="edit" block @click="openEdit(item)">编辑</van-button>
                 </van-col>
                 <van-col span="12">
-                  <van-button type="danger" plain size="small" icon="delete-o" block @click="deleteRoom(item.roomId)">删除</van-button>
+                  <van-button type="danger" plain size="small" icon="delete-o" block @click="deleteRoom(item.id)">删除</van-button>
                 </van-col>
               </van-row>
             </div>
@@ -60,7 +60,7 @@
     <!-- 新增/编辑弹窗 -->
     <van-popup v-model:show="showFormdateModal" round position="bottom" :style="{ maxHeight: '90%' }">
       <div class="popup-wrap">
-        <van-nav-bar :title="form.roomId ? '编辑房间' : '添加新房间'" right-text="关闭" @click-right="showFormdateModal = false" />
+        <van-nav-bar :title="form.id ? '编辑房间' : '添加新房间'" right-text="关闭" @click-right="showFormdateModal = false" />
         <van-form @submit="save" style="padding:0 4px">
           <van-cell-group inset>
             <van-field
@@ -111,7 +111,7 @@
             </van-field>
           </van-cell-group>
           <div style="padding:16px">
-            <van-button type="primary" native-type="submit" block>{{ form.roomId ? '保存修改' : '添加房间' }}</van-button>
+            <van-button type="primary" native-type="submit" block loading-text="提交中" :loading="submitLoading">{{ form.id ? '保存修改' : '添加房间' }}</van-button>
           </div>
         </van-form>
       </div>
@@ -177,8 +177,8 @@ const form = reactive({
 const showRoomTypePicker = ref(false)
 const selectedRoomType = ref('')
 const roomTypes = ref([])
-
 const rooms = ref([])
+const submitLoading = ref(false)
 
 onMounted(() => {
   getRoomType()
@@ -296,7 +296,7 @@ function openAdd() {
 }
 
 function openEdit(item = {}) {
-  form.roomId = item.roomId
+  form.roomId = item.id
   form.roomName = item.roomName
   form.description = item.description
   form.tencentRoomId = item.tencentRoomId
@@ -315,12 +315,12 @@ function save() {
   }
 }
 
-function deleteRoom(roomId) {
+function deleteRoom(id) {
   showConfirmDialog({
     message: '确认删除吗',
   })
     .then(() => {
-      roomDelete(roomId)
+      roomDelete(id)
     })
     .catch(() => {});
 }
