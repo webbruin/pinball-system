@@ -60,7 +60,7 @@
     <!-- 新增/编辑弹窗 -->
     <van-popup v-model:show="showFormdateModal" round position="bottom" :style="{ maxHeight: '90%' }">
       <div class="popup-wrap">
-        <van-nav-bar :title="form.id ? '编辑房间' : '添加新房间'" right-text="关闭" @click-right="showFormdateModal = false" />
+        <van-nav-bar :title="form.roomId ? '编辑房间' : '添加新房间'" right-text="关闭" @click-right="showFormdateModal = false" />
         <van-form @submit="save" style="padding:0 4px">
           <van-cell-group inset>
             <van-field
@@ -111,7 +111,7 @@
             </van-field>
           </van-cell-group>
           <div style="padding:16px">
-            <van-button type="primary" native-type="submit" block loading-text="提交中" :loading="submitLoading">{{ form.id ? '保存修改' : '添加房间' }}</van-button>
+            <van-button type="primary" native-type="submit" block loading-text="提交中" :loading="submitLoading">{{ form.roomId ? '保存修改' : '添加房间' }}</van-button>
           </div>
         </van-form>
       </div>
