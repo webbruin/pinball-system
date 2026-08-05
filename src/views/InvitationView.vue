@@ -59,6 +59,7 @@
               <span class="extra-tag" v-if="item.inviteLimit === 0">邀请人数不限</span>
               <span class="extra-tag" v-if="item.realNameRequired === 1">需实名</span>
               <span class="extra-tag" v-if="item.rechargeRequired === 1">需充值</span>
+              <span class="extra-tag" v-if="item.rechargeCommissionRate !== undefined && item.rechargeCommissionRate !== null">充值提成: {{ item.rechargeCommissionRate }}%</span>
             </div>
             <div class="activity-actions">
               <van-button plain icon="edit" size="small" style="flex:1" @click="openEdit(item)">编辑</van-button>
@@ -130,6 +131,12 @@
               type="number"
               label="提现金额"
               placeholder="仅记录，不发放"
+            />
+            <van-field
+              v-model="form.rechargeCommissionRate"
+              type="number"
+              label="充值提成(%)"
+              placeholder="请输入百分比,默认0"
             />
             <van-field
               v-model="form.inviteLimit"
@@ -349,6 +356,7 @@ const form = reactive({
   inviteLimit: 0,
   realNameRequired: 0,
   rechargeRequired: 0,
+  rechargeCommissionRate: 0,
   rewardMarble: 0,
   rewardMemberPoint: 0,
   rewardPointCard: 0,
@@ -457,6 +465,7 @@ const toggleStatus = async (item) => {
       endTime: item.endTime || '',
       inviteLimit: item.inviteLimit ?? 0,
       realNameRequired: item.realNameRequired ?? 0,
+      rechargeCommissionRate: item.rechargeCommissionRate ?? 0,
       rechargeRequired: item.rechargeRequired ?? 0,
       rewardMarble: item.rewardMarble ?? 0,
       rewardMemberPoint: item.rewardMemberPoint ?? 0,
@@ -513,6 +522,7 @@ function openAdd() {
   form.endTime = ''
   form.inviteLimit = 0
   form.realNameRequired = 0
+  form.rechargeCommissionRate = 0
   form.rechargeRequired = 0
   form.rewardMarble = 0
   form.rewardMemberPoint = 0
@@ -530,6 +540,7 @@ function openEdit(item) {
   form.endTime = item.endTime || ''
   form.inviteLimit = item.inviteLimit ?? 0
   form.realNameRequired = item.realNameRequired ?? 0
+  form.rechargeCommissionRate = item.rechargeCommissionRate ?? 0
   form.rechargeRequired = item.rechargeRequired ?? 0
   form.rewardMarble = item.rewardMarble ?? 0
   form.rewardMemberPoint = item.rewardMemberPoint ?? 0

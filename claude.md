@@ -293,6 +293,7 @@ base
           endTime	活动结束时间		
           inviteLimit	单个邀请人邀请上限（0=不限）		
           realNameRequired	是否要求被邀请人实名：0-否，1-是		
+          rechargeCommissionRate	用户充值提成比例（百分比），范围0-100，默认0			
           rechargeRequired	是否要求被邀请人完成弹珠充值：0-否，1-是		
           rewardMarble	奖励弹珠数量		
           rewardMemberPoint	奖励会员积分数量		
@@ -334,6 +335,7 @@ base
       endTime	活动结束时间			
       inviteLimit	单个邀请人邀请上限（0=不限）			
       realNameRequired	是否要求被邀请人实名：0-否，1-是			
+      rechargeCommissionRate	用户充值提成比例（百分比），范围0-100，默认0			
       rechargeRequired	是否要求被邀请人完成弹珠充值：0-否，1-是			
       rewardMarble	奖励弹珠数量			
       rewardMemberPoint	奖励会员积分数量			
