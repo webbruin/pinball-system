@@ -1147,3 +1147,65 @@ base
         "code": 0,
         "message": ""
       }
+十五.用户反馈管理
+  1.分页查询所有反馈列表
+    接口：/admin/pinball/feedback/page
+    入参：
+      createTimeEnd	创建时间止（含）			
+      createTimeStart	创建时间起（含）			
+      current	当前页			
+      feedbackType	问题类型			
+      pageSize	每页大小			
+      sortField	排序字段集合
+        asc
+        column
+    出参：
+      code
+      data
+        current	当前页	
+        data	返回数据	array
+          avatar	用户头像		
+          content	反馈内容		
+          createTime	创建时间		
+          feedbackId	反馈ID		
+          feedbackType	问题类型		
+          images	图片URL列表（JSON数组字符串）		
+          nickName	用户昵称		
+          orderId	关联订单号		
+          replyContent	回复内容		
+          replyTime	回复时间		
+          replyUserName	回复人姓名		
+          userId	用户ID		
+        pageSize	每页大小	
+        total	总条数	
+      message		
+  2.查看反馈详情
+    接口：/admin/pinball/feedback/detail
+    入参：
+      feedbackId	反馈ID
+    出参：
+      code
+      data
+        avatar	用户头像		
+        content	反馈内容		
+        createTime	创建时间		
+        feedbackId	反馈ID		
+        feedbackType	问题类型		
+        images	图片URL列表（JSON数组字符串）		
+        nickName	用户昵称		
+        orderId	关联订单号		
+        replyContent	回复内容		
+        replyTime	回复时间		
+        replyUserName	回复人姓名		
+        userId	用户ID		
+      message		
+  3.填写反馈回复
+    接口：/admin/pinball/feedback/reply
+    入参：
+      feedbackId	反馈ID	
+      replyContent	回复内容
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }

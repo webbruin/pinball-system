@@ -16,6 +16,7 @@ import RechargeView from '../views/RechargeView.vue'
 import MqttLogView from '../views/MqttLogView.vue'
 import OrderView from '../views/OrderView.vue'
 import WithdrawView from '../views/WithdrawView.vue'
+import FeedbackView from '../views/FeedbackView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,7 @@ const router = createRouter({
         { path: '/mqtt-log', name: 'mqtt-log', component: MqttLogView },
         { path: '/order', name: 'order', component: OrderView },
         { path: '/withdraw', name: 'withdraw', component: WithdrawView },
+        { path: '/feedback', name: 'feedback', component: FeedbackView },
       ]
     },
     // { path: '/', redirect: '/home' },
