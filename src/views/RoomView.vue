@@ -27,20 +27,24 @@
                   <span class="label" :style="{'color': item.useStatus <= 1 ? '#52C41A' : '#ccc'}">{{ roomUseStatusEnum[item.useStatus] }}</span>
                 </div>
                 <div class="info">
-                  <span class="name">状态</span>
-                  <span class="label">{{ onlineStatusEnum[item.onlineStatus] }}</span>
+                  <span class="name">房间ID</span>
+                  <span class="label">{{ item.tencentRoomId }}</span>
                 </div>
                 <div class="info">
-                  <span class="name">房间</span>
+                  <span class="name">房间名称</span>
                   <span class="label">{{ item.roomName }}</span>
                 </div>
                 <div class="info">
                   <span class="name">房间类型</span>
                   <span class="label">{{ item.roomTypeName }}</span>
                 </div>
+                <!-- <div class="info">
+                  <span class="name">调试状态</span>
+                  <span class="label">{{ onlineStatusEnum[item.onlineStatus] }}</span>
+                </div> -->
                 <div class="info">
-                  <span class="name">房间ID</span>
-                  <span class="label">{{ item.tencentRoomId }}</span>
+                  <span class="name">开启/关闭</span>
+                   <van-switch v-model="item.onlineStatus" :active-value="1" :inactive-value="0" size="18px" @change="switchRoomOnline(item)" />
                 </div>
               </van-space>
               <van-row :gutter="[10]">
@@ -97,7 +101,7 @@
               placeholder="请选择"
               :rules="[{ required: true, message: '请选择推荐页序号' }]"
             />
-            <van-field name="debugMode" label="是否开启调试">
+            <van-field name="debugMode" label="调试模式">
               <template #input>
                 <van-radio-group
                   direction="horizontal"
@@ -142,7 +146,8 @@ const roomUseStatusEnum = {
   0: '空闲',
   1: '使用中',
   10: '故障',
-  11: '下线'
+  11: '下线',
+  12: '调试中',
 }
 
 const onlineStatusEnum = {
@@ -280,6 +285,22 @@ const roomDelete = async (roomId) => {
     }
   } catch (e) {
     showToast('系统错误')
+  }
+}
+
+// 房间-关闭/开启
+const switchRoomOnline = async (item) => {
+  try {
+    const res = await api.post('/admin/pinball/room/switchRoomOnline', { roomId: item.id, onlineStatus: item.onlineStatus })
+    if (res.code === 200) {
+      // ...
+    } else {
+      showToast(res.message)
+      item.onlineStatus = item.onlineStatus === 1 ? 0 : 1
+    }
+  } catch (e) {
+    showToast('系统错误')
+    item.onlineStatus = item.onlineStatus === 1 ? 0 : 1
   }
 }
 
