@@ -27,7 +27,7 @@
                 <div class="fb-nick">{{ item.nickName || '匿名用户' }}</div>
                 <div class="fb-meta">用户ID: {{ item.userId || '-' }}</div>
               </div>
-              <van-tag size="small" type="primary" plain>{{ item.feedbackType || '未分类' }}</van-tag>
+              <van-tag size="small" type="primary" plain>{{ feedbackTypeLabel(item.feedbackType) }}</van-tag>
             </div>
             <div class="fb-content">{{ item.content || '-' }}</div>
             <div class="fb-images" v-if="imageList(item.images).length">
@@ -52,7 +52,7 @@
         <van-cell-group inset v-if="detail">
           <van-cell title="用户昵称" :value="detail.nickName || '-'" />
           <van-cell title="用户ID" :value="detail.userId || '-'" />
-          <van-cell title="问题类型" :value="detail.feedbackType || '-'" />
+          <van-cell title="问题类型" :value="feedbackTypeLabel(detail.feedbackType, '-')" />
           <van-cell title="关联订单" :value="detail.orderId || '-'" />
           <van-cell title="创建时间" :value="detail.createTime || '-'" />
           <van-cell title="反馈内容" :value="detail.content || '-'" />
@@ -96,12 +96,41 @@
     <van-popup v-model:show="showEnd" round position="bottom">
       <van-date-picker v-model="endValue" title="选择结束时间" @confirm="onEndConfirm" @cancel="showEnd = false" />
     </van-popup>
+
+    <!-- 图片预览 -->
+    <div v-if="previewShow" class="image-preview" @touchstart="onPreviewTouchStart" @touchmove="onPreviewTouchMove" @touchend="onPreviewTouchEnd" @click="onPreviewClick">
+      <div class="preview-header">
+        <span class="preview-count">{{ previewIndex + 1 }} / {{ previewImages.length }}</span>
+        <van-icon name="cross" size="22" color="#fff" @click.stop="previewShow = false" />
+      </div>
+      <div class="preview-track" :class="{ dragging }" :style="{ transform: `translateX(calc(${-previewIndex * 100}% + ${dragOffset}px))` }">
+        <div class="preview-slide" v-for="(img, i) in previewImages" :key="i">
+          <img :src="img" class="preview-image" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, computed } from 'vue'
-import { showToast, showLoadingToast, showImagePreview } from 'vant'
+import { showToast, showLoadingToast } from 'vant'
+
+const feedbackTypeEnum = {
+  '1': '下单问题',
+  '2': '点击问题',
+  '3': '费用问题',
+  '4': '服务问题',
+  '5': '订单问题',
+  '6': '积分问题',
+  '7': '卡顿/闪现',
+  '8': '其他问题',
+}
+
+function feedbackTypeLabel(type, fallback = '未分类') {
+  if (feedbackTypeEnum[type]) return feedbackTypeEnum[type]
+  return type || fallback
+}
 
 const params = ref({
   current: 1,
@@ -149,11 +178,53 @@ function imageList(images) {
   }
 }
 
+const previewShow = ref(false)
+const previewImages = ref([])
+const previewIndex = ref(0)
+const dragOffset = ref(0)
+const dragging = ref(false)
+let touchStartX = 0
+let isSwiping = false
+
 function previewImage(images, index = 0) {
-  showImagePreview({
-    images: imageList(images),
-    startPosition: index,
-  })
+  previewImages.value = imageList(images)
+  previewIndex.value = index
+  dragOffset.value = 0
+  dragging.value = false
+  previewShow.value = true
+}
+
+function onPreviewTouchStart(e) {
+  touchStartX = e.touches[0].clientX
+  isSwiping = false
+}
+
+function onPreviewTouchMove(e) {
+  let deltaX = e.touches[0].clientX - touchStartX
+  if (Math.abs(deltaX) > 10) isSwiping = true
+  const atStart = previewIndex.value === 0 && deltaX > 0
+  const atEnd = previewIndex.value === previewImages.value.length - 1 && deltaX < 0
+  if (atStart || atEnd) deltaX = deltaX * 0.3
+  dragOffset.value = deltaX
+  dragging.value = true
+}
+
+function onPreviewTouchEnd(e) {
+  const deltaX = e.changedTouches[0].clientX - touchStartX
+  if (Math.abs(deltaX) > 50) {
+    if (deltaX < 0 && previewIndex.value < previewImages.value.length - 1) {
+      previewIndex.value++
+    } else if (deltaX > 0 && previewIndex.value > 0) {
+      previewIndex.value--
+    }
+  }
+  dragOffset.value = 0
+  dragging.value = false
+}
+
+function onPreviewClick() {
+  if (isSwiping) return
+  previewShow.value = false
 }
 
 const showDetail = ref(false)
@@ -389,5 +460,68 @@ const submitReply = async () => {
 
 .detail-actions {
   padding-top: 12px;
+}
+
+.image-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.preview-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.preview-count {
+  font-size: 14px;
+  color: #fff;
+}
+
+.preview-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  touch-action: none;
+}
+
+.preview-track.dragging {
+  transition: none;
+}
+
+.preview-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.preview-hint {
+  position: absolute;
+  bottom: 40px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
 }
 </style>

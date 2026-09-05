@@ -158,7 +158,7 @@ const getBanners = async () => {
   try {
     const payload = {}
     if (bannerType.value) payload.bannerType = bannerType.value
-    const res = await api.post('/pinball/banner/listBanner', payload)
+    const res = await api.post('/admin/pinball/banner/listBanner', payload)
     loading.close()
     if (res.code === 200) {
       banners.value = res.data || []
@@ -178,7 +178,7 @@ function onSearch() {
 // 切换启用状态
 const toggleStatus = async (item) => {
   try {
-    const res = await api.post('/pinball/banner/updateBanner', {
+    const res = await api.post('/admin/pinball/banner/updateBanner', {
       id: item.id,
       title: item.title,
       bannerType: item.bannerType,
@@ -218,8 +218,8 @@ const moveDown = async (idx) => {
 
 const updateSortBatch = async (a, b) => {
   try {
-    await api.post('/pinball/banner/updateBannerSort', { id: a.id, sort: b.sort })
-    await api.post('/pinball/banner/updateBannerSort', { id: b.id, sort: a.sort })
+    await api.post('/admin/pinball/banner/updateBannerSort', { id: a.id, sort: b.sort })
+    await api.post('/admin/pinball/banner/updateBannerSort', { id: b.id, sort: a.sort })
   } catch (e) { /* ignore */ }
 }
 
@@ -227,7 +227,7 @@ const updateSortBatch = async (a, b) => {
 const createOrUpdate = async () => {
   try {
     submitLoading.value = true
-    const url = form.id ? '/pinball/banner/updateBanner' : '/pinball/banner/addBanner'
+    const url = form.id ? '/admin/pinball/banner/updateBanner' : '/admin/pinball/banner/addBanner'
     const res = await api.post(url, form)
     submitLoading.value = false
     if (res.code === 200) {
@@ -245,7 +245,7 @@ const createOrUpdate = async () => {
 // 删除Banner
 const deleteBanner = async (id) => {
   try {
-    const res = await api.post('/pinball/banner/deleteBanner', { id })
+    const res = await api.post('/admin/pinball/banner/deleteBanner', { id })
     if (res.code === 200) {
       getBanners()
     } else {
