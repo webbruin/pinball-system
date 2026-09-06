@@ -40,6 +40,8 @@
                 <van-cell center title="金币加成" icon="gold-coin-o" :value="`+${lv.goldBonusRate}%`" value-class="perk-val" :style="{'--van-cell-icon-color': '#F59E0B'}" />
                 <van-cell center title="购物折扣" icon="discount" :value="`${lv.shoppingDiscountRate}% OFF`" value-class="perk-val" :style="{'--van-cell-icon-color': '#10B981'}" />
                 <van-cell center title="客服支持" icon="service-o" :value="serviceLevelMap[lv.serviceLevel] || '-'" value-class="perk-val-gray" />
+                <van-cell center title="升级赠送弹珠" icon="gem-o" :value="`${lv.upgradeRewardMarble ?? 0}`" value-class="perk-val" :style="{'--van-cell-icon-color': '#8B5CF6'}" />
+                <van-cell center title="升级赠送会员积分" icon="points" :value="String(lv.upgradeRewardMemberPoint ?? 0)" value-class="perk-val" :style="{'--van-cell-icon-color': '#EC4899'}" />
               </van-cell-group>
 
               <div class="lv-actions">
@@ -106,6 +108,8 @@
             <van-field v-model="form.levelName" label="等级名称" placeholder="请输入" :rules="[{ required: true, message: '请填写等级名称' }]" />
             <van-field v-model="form.levelValue" type="number" label="等级值" placeholder="从1开始" :rules="[{ required: true, message: '请填写等级值' }]" />
             <van-field v-model="form.upgradeAmount" type="number" label="晋升所需充值(元)" placeholder="请输入" :rules="[{ required: true, message: '请填写晋升金额' }]" />
+            <van-field v-model="form.upgradeRewardMarble" type="number" label="升级赠送弹珠" placeholder="默认0" />
+            <van-field v-model="form.upgradeRewardMemberPoint" type="number" label="升级赠送会员积分" placeholder="默认0" />
             <van-field v-model="form.goldBonusRate" type="number" label="金币加成(%)" placeholder="请输入" />
             <van-field v-model="form.shoppingDiscountRate" type="number" label="购物折扣(%)" placeholder="请输入" />
             <van-field name="serviceLevel" label="客服支持">
@@ -164,6 +168,8 @@ const form = reactive({
   levelName: '',
   levelValue: '',
   upgradeAmount: '',
+  upgradeRewardMarble: '',
+  upgradeRewardMemberPoint: '',
   goldBonusRate: '',
   shoppingDiscountRate: '',
   serviceLevel: 1,
@@ -213,6 +219,8 @@ const toggleStatus = async (item) => {
       levelName: item.levelName,
       levelValue: item.levelValue,
       upgradeAmount: item.upgradeAmount,
+      upgradeRewardMarble: item.upgradeRewardMarble ?? 0,
+      upgradeRewardMemberPoint: item.upgradeRewardMemberPoint ?? 0,
       goldBonusRate: item.goldBonusRate ?? 0,
       shoppingDiscountRate: item.shoppingDiscountRate ?? 0,
       serviceLevel: item.serviceLevel ?? 1,
@@ -264,6 +272,8 @@ function openAdd() {
   form.levelName = ''
   form.levelValue = ''
   form.upgradeAmount = ''
+  form.upgradeRewardMarble = ''
+  form.upgradeRewardMemberPoint = ''
   form.goldBonusRate = ''
   form.shoppingDiscountRate = ''
   form.serviceLevel = 1
@@ -276,6 +286,8 @@ function openEdit(item) {
   form.levelName = item.levelName
   form.levelValue = item.levelValue
   form.upgradeAmount = item.upgradeAmount ?? ''
+  form.upgradeRewardMarble = item.upgradeRewardMarble ?? ''
+  form.upgradeRewardMemberPoint = item.upgradeRewardMemberPoint ?? ''
   form.goldBonusRate = item.goldBonusRate ?? ''
   form.shoppingDiscountRate = item.shoppingDiscountRate ?? ''
   form.serviceLevel = item.serviceLevel ?? 1

@@ -495,6 +495,8 @@ base
       shoppingDiscountRate	购物折扣（%）			
       status	状态：1-启用，0-停用（新增不传默认启用）			
       upgradeAmount	晋升该等级所需充值金额（单位：元）	
+      upgradeRewardMarble	升级赠送弹珠数，默认0	
+      upgradeRewardMemberPoint	升级赠送会员积分数，默认0	
     出参：
       {
         "code": 0,
@@ -512,6 +514,8 @@ base
       shoppingDiscountRate	购物折扣（%）			
       status	状态：1-启用，0-停用（新增不传默认启用）			
       upgradeAmount	晋升该等级所需充值金额（单位：元）	
+      upgradeRewardMarble	升级赠送弹珠数，默认0	
+      upgradeRewardMemberPoint	升级赠送会员积分数，默认0	
     出参：
       {
         "code": 0,

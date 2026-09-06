@@ -323,7 +323,7 @@ function openEdit(item = {}) {
   form.tencentRoomId = item.tencentRoomId
   form.roomTypeId = item.roomTypeId
   form.sort = item.sort
-  form.debugMode = 0
+  form.debugMode = item.debugMode
   selectedRoomType.value = getTypeName(item.roomTypeId)
   showFormdateModal.value = true
 }
