@@ -280,6 +280,7 @@ const roomDelete = async (roomId) => {
     const res = await api.post('/admin/pinball/room/deleteRoom', { roomId })
     if (res.code === 200) {
       showFormdateModal.value = false
+      getPageRoom(true)
     } else {
       showToast(res.message)
     }
