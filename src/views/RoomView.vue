@@ -12,9 +12,15 @@
         <div class="subtitle">配置房间</div>
       </div>
 
+      <van-tabs v-model:active="activeTab" sticky offset-top="46">
+        <van-tab title="全部" />
+        <van-tab v-for="t in roomTypes" :key="t.roomTypeId" :title="t.roomTypeName" />
+      </van-tabs>
+
       <div class="section" style="margin-bottom:16px">
-        <van-row :gutter="[12, 20]">
-          <van-col span="12" v-for="item, index in rooms" :key="index">
+        <van-empty v-if="!filteredRooms.length" description="暂无房间数据" style="padding-top:40px" />
+        <van-row v-else :gutter="[12, 20]">
+          <van-col span="12" v-for="item, index in filteredRooms" :key="index">
             <van-image
               width="100%"
               radius="12px"
@@ -138,7 +144,7 @@
 </template>
 
 <script setup>
-import { onMounted, onBeforeUnmount, ref, reactive } from 'vue'
+import { onMounted, onBeforeUnmount, ref, reactive, computed } from 'vue'
 import { showConfirmDialog, showToast, showLoadingToast } from 'vant';
 
 // 房间使用状态枚举：0-空闲，1-使用中，10-故障，11-下线
@@ -184,6 +190,14 @@ const selectedRoomType = ref('')
 const roomTypes = ref([])
 const rooms = ref([])
 const submitLoading = ref(false)
+
+// 房间类型筛选（本地）
+const activeTab = ref(0)
+const filteredRooms = computed(() => {
+  if (activeTab.value === 0) return rooms.value
+  const type = roomTypes.value[activeTab.value - 1]
+  return rooms.value.filter(r => r.roomTypeId === type.roomTypeId)
+})
 
 onMounted(() => {
   getRoomType()

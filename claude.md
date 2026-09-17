@@ -69,7 +69,7 @@ base
     接口：/admin/pinball/shop/category/save
     入参：categoryId	分类ID（新增时为空，编辑时必填）
          categoryName	分类名称			
-         icon	分类图标URL		需要本地选择图片上传，上传接口你先mock
+         icon	分类图标URL
          sortOrder	排序序号			
          status	状态：0-禁用，1-启用			
     出参：{
