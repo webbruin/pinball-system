@@ -1,0 +1,1112 @@
+[
+  {
+    "cat": "中外名酒",
+    "name": "泸州老窖头曲",
+    "productId": 123,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1186",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "西凤酒丝路明珠",
+    "productId": 124,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1187",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "五粮液永不分梨",
+    "productId": 125,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1188",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "水晶剑南春",
+    "productId": 126,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1189",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "四特青花窖藏",
+    "productId": 127,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1190",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "泸州老窖双瓶",
+    "productId": 128,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1191",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "法国赤霞珠红酒",
+    "productId": 129,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1192",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "贵州国酱1935",
+    "productId": 130,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1193",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "泸州老窖特曲",
+    "productId": 131,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1194",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "白水杜康鸿运",
+    "productId": 132,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1195",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "五粮液一尊天下",
+    "productId": 133,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1196",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "知福国酱1935",
+    "productId": 134,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1197",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "法国XO白兰地",
+    "productId": 135,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1198",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "茅台赖茅端曲",
+    "productId": 136,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1199",
+    "pointType": 1
+  },
+  {
+    "cat": "中外名酒",
+    "name": "西凤酒金尊",
+    "productId": 137,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1200",
+    "pointType": 1
+  },
+  {
+    "cat": "休闲食品",
+    "name": "风干牛肉干",
+    "productId": 138,
+    "skuId": "1081",
+    "points": 258,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "五香烤花生米",
+    "productId": 139,
+    "skuId": "1082",
+    "points": 55,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "炭食光牛肉干",
+    "productId": 140,
+    "skuId": "1083",
+    "points": 929,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "新疆鹰嘴豆",
+    "productId": 141,
+    "skuId": "1084",
+    "points": 90,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "香酥蚕豆",
+    "productId": 142,
+    "skuId": "1085",
+    "points": 79,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "香酥兰花豆",
+    "productId": 143,
+    "skuId": "1086",
+    "points": 94,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "孜然牛肉筋",
+    "productId": 144,
+    "skuId": "1087",
+    "points": 130,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "手撕风干牛肉",
+    "productId": 145,
+    "skuId": "1088",
+    "points": 179,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "小鱼花生米",
+    "productId": 146,
+    "skuId": "1089",
+    "points": 70,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "蒜香青豆",
+    "productId": 147,
+    "skuId": "1090",
+    "points": 97,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "八珍糕",
+    "productId": 148,
+    "skuId": "1091",
+    "points": 51,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "云南鸡枞菌",
+    "productId": 149,
+    "skuId": "1092",
+    "points": 118,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "麻酱鸡蛋",
+    "productId": 150,
+    "skuId": "1093",
+    "points": 105,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "台湾凤梨酥",
+    "productId": 151,
+    "skuId": "1094",
+    "points": 47,
+    "status": "ok"
+  },
+  {
+    "cat": "休闲食品",
+    "name": "五黑威化饼干",
+    "productId": 152,
+    "skuId": "1095",
+    "points": 77,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "护腕鼠标垫",
+    "productId": 153,
+    "skuId": "1096",
+    "points": 107,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "无线蓝牙小键盘",
+    "productId": 154,
+    "skuId": "1097",
+    "points": 396,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "键盘鼠标套装",
+    "productId": 155,
+    "skuId": "1098",
+    "points": 441,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "蓝牙键盘鼠标",
+    "productId": 156,
+    "skuId": "1099",
+    "points": 580,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "电脑肘托",
+    "productId": 157,
+    "skuId": "1100",
+    "points": 145,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "人体工学腕托",
+    "productId": 158,
+    "skuId": "1101",
+    "points": 118,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "垂直立式鼠标",
+    "productId": 159,
+    "skuId": "1102",
+    "points": 431,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "记忆棉腕托",
+    "productId": 160,
+    "skuId": "1103",
+    "points": 83,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "键盘手托",
+    "productId": 161,
+    "skuId": "1104",
+    "points": 89,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "硅胶护腕托",
+    "productId": 162,
+    "skuId": "1105",
+    "points": 85,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "机械手感键盘",
+    "productId": 163,
+    "skuId": "1106",
+    "points": 259,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "牧马人游戏鼠标",
+    "productId": 164,
+    "skuId": "1107",
+    "points": 291,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "电脑手臂肘托",
+    "productId": 165,
+    "skuId": "1108",
+    "points": 210,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "4K电脑摄像头",
+    "productId": 166,
+    "skuId": "1109",
+    "points": 206,
+    "status": "ok"
+  },
+  {
+    "cat": "外设产品",
+    "name": "直播补光灯",
+    "productId": 167,
+    "skuId": "1110",
+    "points": 313,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "可伸缩书立",
+    "productId": 168,
+    "skuId": "1111",
+    "points": 87,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "白板墙贴",
+    "productId": 169,
+    "skuId": "1112",
+    "points": 102,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "百科知识卡牌",
+    "productId": 170,
+    "skuId": "1113",
+    "points": 30,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "文件整理架",
+    "productId": 171,
+    "skuId": "1114",
+    "points": 114,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "商务记事本",
+    "productId": 172,
+    "skuId": "1115",
+    "points": 30,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "几何数学教具",
+    "productId": 173,
+    "skuId": "1116",
+    "points": 59,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "儿童液晶画板",
+    "productId": 174,
+    "skuId": "1117",
+    "points": 266,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "得力双面胶",
+    "productId": 175,
+    "skuId": "1118",
+    "points": 44,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "时间管理贴",
+    "productId": 176,
+    "skuId": "1119",
+    "points": 79,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "控笔训练本",
+    "productId": 177,
+    "skuId": "1120",
+    "points": 66,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "加厚文件架",
+    "productId": 178,
+    "skuId": "1121",
+    "points": 52,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "可视化计时器",
+    "productId": 179,
+    "skuId": "1122",
+    "points": 168,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "得力安全剪刀",
+    "productId": 180,
+    "skuId": "1123",
+    "points": 46,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "索引便签贴",
+    "productId": 181,
+    "skuId": "1124",
+    "points": 69,
+    "status": "ok"
+  },
+  {
+    "cat": "学习用品",
+    "name": "学科分类袋",
+    "productId": 182,
+    "skuId": "1125",
+    "points": 61,
+    "status": "ok"
+  },
+  {
+    "cat": "床上用品",
+    "name": "乳胶护颈枕",
+    "productId": 183,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1201",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "多功能趴睡枕",
+    "productId": 184,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1202",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "南极人四件套",
+    "productId": 185,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1203",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "榻榻米靠垫",
+    "productId": 186,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1204",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "全棉四件套",
+    "productId": 187,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1205",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "三角大靠背",
+    "productId": 188,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1206",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "宿舍六件套",
+    "productId": 189,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1207",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "酒店护颈枕",
+    "productId": 190,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1208",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "荞麦壳枕头",
+    "productId": 191,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1209",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "希尔顿羽绒枕",
+    "productId": 192,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1210",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "记忆棉颈椎枕",
+    "productId": 193,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1211",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "羊羔绒被子",
+    "productId": 194,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1212",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "宿舍三件套",
+    "productId": 195,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1213",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "磨毛床笠",
+    "productId": 196,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1214",
+    "pointType": 1
+  },
+  {
+    "cat": "床上用品",
+    "name": "A类加厚四件套",
+    "productId": 197,
+    "status": "ok",
+    "message": "会员专属商品的规格必须使用会员积分",
+    "skuId": "1215",
+    "pointType": 1
+  },
+  {
+    "cat": "户外装备",
+    "name": "铝合金登山扣",
+    "productId": 198,
+    "skuId": "1126",
+    "points": 61,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "露营收纳箱",
+    "productId": 199,
+    "skuId": "1127",
+    "points": 149,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "户外折叠椅",
+    "productId": 200,
+    "skuId": "1128",
+    "points": 304,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "医用急救包",
+    "productId": 201,
+    "skuId": "1129",
+    "points": 88,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "户外登山绳",
+    "productId": 202,
+    "skuId": "1130",
+    "points": 73,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "露营星星灯",
+    "productId": 203,
+    "skuId": "1131",
+    "points": 95,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "户外月亮椅",
+    "productId": 204,
+    "skuId": "1132",
+    "points": 168,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "户外露营车",
+    "productId": 205,
+    "skuId": "1133",
+    "points": 745,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "登山扣挂绳",
+    "productId": 206,
+    "skuId": "1134",
+    "points": 86,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "可折叠水桶",
+    "productId": 207,
+    "skuId": "1135",
+    "points": 69,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "露营手推车",
+    "productId": 208,
+    "skuId": "1136",
+    "points": 790,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "防风打火机",
+    "productId": 209,
+    "skuId": "1137",
+    "points": 91,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "折叠月亮椅",
+    "productId": 210,
+    "skuId": "1138",
+    "points": 434,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "车载收纳箱",
+    "productId": 211,
+    "skuId": "1139",
+    "points": 328,
+    "status": "ok"
+  },
+  {
+    "cat": "户外装备",
+    "name": "钓鱼折叠椅",
+    "productId": 212,
+    "skuId": "1140",
+    "points": 158,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "星际光剑",
+    "productId": 213,
+    "skuId": "1141",
+    "points": 224,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "减压指尖陀螺",
+    "productId": 214,
+    "skuId": "1142",
+    "points": 224,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "如意金箍棒",
+    "productId": 215,
+    "skuId": "1143",
+    "points": 322,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "电动连发水枪",
+    "productId": 216,
+    "skuId": "1144",
+    "points": 468,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "解压玩具",
+    "productId": 217,
+    "skuId": "1145",
+    "points": 47,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "发光双刃光剑",
+    "productId": 218,
+    "skuId": "1146",
+    "points": 224,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "雷霆战斧",
+    "productId": 219,
+    "skuId": "1147",
+    "points": 453,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "遥控感应车",
+    "productId": 220,
+    "skuId": "1148",
+    "points": 224,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "儿童拳击机",
+    "productId": 221,
+    "skuId": "1149",
+    "points": 384,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "追光爬墙车",
+    "productId": 222,
+    "skuId": "1150",
+    "points": 350,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "感应飞行球",
+    "productId": 223,
+    "skuId": "1151",
+    "points": 188,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "儿童剑盾组合",
+    "productId": 224,
+    "skuId": "1152",
+    "points": 224,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "遥控飞机",
+    "productId": 225,
+    "skuId": "1153",
+    "points": 548,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "儿童弹力球",
+    "productId": 226,
+    "skuId": "1154",
+    "points": 78,
+    "status": "ok"
+  },
+  {
+    "cat": "玩具潮玩",
+    "name": "立体迷宫球",
+    "productId": 227,
+    "skuId": "1155",
+    "points": 172,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "电动捣蒜器",
+    "productId": 228,
+    "skuId": "1156",
+    "points": 289,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "手机懒人支架",
+    "productId": 229,
+    "skuId": "1157",
+    "points": 52,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "心相印抽纸",
+    "productId": 230,
+    "skuId": "1158",
+    "points": 20,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "迷你洗衣机",
+    "productId": 231,
+    "skuId": "1159",
+    "points": 158,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "德力西活动扳手",
+    "productId": 232,
+    "skuId": "1160",
+    "points": 62,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "厨房电子秤",
+    "productId": 233,
+    "skuId": "1161",
+    "points": 108,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "厕所除臭香薰",
+    "productId": 234,
+    "skuId": "1162",
+    "points": 106,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "桌面理线器",
+    "productId": 235,
+    "skuId": "1163",
+    "points": 29,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "纳米双面胶",
+    "productId": 236,
+    "skuId": "1164",
+    "points": 25,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "螺丝刀套装",
+    "productId": 237,
+    "skuId": "1165",
+    "points": 117,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "火钳垃圾夹",
+    "productId": 238,
+    "skuId": "1166",
+    "points": 45,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "小型电磨机",
+    "productId": 239,
+    "skuId": "1167",
+    "points": 258,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "不锈钢泡面碗",
+    "productId": 240,
+    "skuId": "1168",
+    "points": 71,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "免打孔理线器",
+    "productId": 241,
+    "skuId": "1169",
+    "points": 24,
+    "status": "ok"
+  },
+  {
+    "cat": "生活日用",
+    "name": "家用五金工具",
+    "productId": 242,
+    "skuId": "1170",
+    "points": 95,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天调料套装",
+    "productId": 243,
+    "skuId": "1171",
+    "points": 99,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天调料组合",
+    "productId": 244,
+    "skuId": "1172",
+    "points": 87,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天酱油组合",
+    "productId": 245,
+    "skuId": "1173",
+    "points": 169,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "小瓶调料组合",
+    "productId": 246,
+    "skuId": "1174",
+    "points": 98,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天露营调料",
+    "productId": 247,
+    "skuId": "1175",
+    "points": 130,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天旗舰调料",
+    "productId": 248,
+    "skuId": "1176",
+    "points": 175,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天宿舍调料",
+    "productId": 249,
+    "skuId": "1177",
+    "points": 40,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天调味套装",
+    "productId": 250,
+    "skuId": "1178",
+    "points": 139,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "宿舍小瓶调料",
+    "productId": 251,
+    "skuId": "1179",
+    "points": 26,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天家庭调料",
+    "productId": 252,
+    "skuId": "1180",
+    "points": 179,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "调料组合套装",
+    "productId": 253,
+    "skuId": "1181",
+    "points": 95,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天酱油醋",
+    "productId": 254,
+    "skuId": "1182",
+    "points": 46,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天礼盒套装",
+    "productId": 255,
+    "skuId": "1183",
+    "points": 262,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天味极鲜",
+    "productId": 256,
+    "skuId": "1184",
+    "points": 84,
+    "status": "ok"
+  },
+  {
+    "cat": "粮油调味",
+    "name": "海天生抽老抽",
+    "productId": 257,
+    "skuId": "1185",
+    "points": 48,
+    "status": "ok"
+  }
+]
