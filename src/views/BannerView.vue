@@ -116,13 +116,36 @@
     <van-popup v-model:show="showExpireTime" round position="bottom">
       <van-date-picker v-model="expireTimeValue" title="选择过期时间" @confirm="onExpireTimeConfirm" @cancel="showExpireTime = false" />
     </van-popup>
+
+    <!-- 图片裁切弹窗 -->
+    <van-popup v-model:show="showCrop" round position="bottom" :style="{ height: '80%' }">
+      <div class="crop-wrap">
+        <van-nav-bar title="裁切图片" right-text="取消" @click-right="onCropCancel" />
+        <div class="crop-body">
+          <VueCropper
+            ref="cropperRef"
+            :img="cropImg"
+            :fixed="true"
+            :fixed-number="[357, 120]"
+            :auto-crop="true"
+            :center-box="true"
+            output-type="jpeg"
+          />
+        </div>
+        <div class="crop-footer">
+          <van-button type="primary" block :loading="cropLoading" @click="onCropConfirm">确认裁切</van-button>
+        </div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, reactive, computed } from 'vue'
 import { showConfirmDialog, showToast, showLoadingToast } from 'vant'
-import { onUploadRead } from '../utils/upload'
+import { uploadFile } from '../utils/upload'
+import { VueCropper } from 'vue-cropper'
+import 'vue-cropper/dist/index.css'
 
 const bannerType = ref(undefined)
 const banners = ref([])
@@ -131,6 +154,10 @@ const submitLoading = ref(false)
 const imgFileList = ref([])
 const showExpireTime = ref(false)
 const expireTimeValue = ref([])
+const showCrop = ref(false)
+const cropImg = ref('')
+const cropperRef = ref(null)
+const cropLoading = ref(false)
 const expireTimeDisplay = computed(() => form.expireTime || '')
 
 function onExpireTimeConfirm({ selectedValues }) {
@@ -280,9 +307,39 @@ function openEdit(item) {
   showModal.value = true
 }
 
-async function onImgRead(file) {
-  const url = await onUploadRead(file)
-  if (url) form.imgUrl = url
+function onImgRead(file) {
+  const src = file.content || (file.file ? URL.createObjectURL(file.file) : '')
+  if (!src) return
+  cropImg.value = src
+  imgFileList.value = []
+  showCrop.value = true
+}
+
+function onCropCancel() {
+  showCrop.value = false
+  cropImg.value = ''
+  imgFileList.value = []
+}
+
+function onCropConfirm() {
+  const cropper = cropperRef.value
+  if (!cropper) return
+  cropper.getCropBlob(async (blob) => {
+    const file = new File([blob], 'banner.jpg', { type: blob.type || 'image/jpeg' })
+    cropLoading.value = true
+    try {
+      const url = await uploadFile(file)
+      form.imgUrl = url
+      imgFileList.value = [{ url }]
+      showToast('上传成功')
+    } catch (e) {
+      showToast(e.message || '上传失败')
+    } finally {
+      cropLoading.value = false
+      showCrop.value = false
+      cropImg.value = ''
+    }
+  })
 }
 
 function save() {
@@ -387,4 +444,26 @@ function removeBanner(id) {
   overflow-y: auto;
   max-height: 90vh;
 }
+
+.crop-wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.crop-body {
+  flex: 1;
+  overflow: hidden;
+  background: #000;
+}
+
+.crop-footer {
+  padding: 16px;
+}
+</style>
+<style>
+  .van-uploader__preview-image {
+    width: 200px;
+    height: 67px;
+  }
 </style>

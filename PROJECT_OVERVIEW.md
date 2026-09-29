@@ -130,7 +130,7 @@ pinball-system-miniapp-ui/
 - 类型 Tab 切换：全部 / 轮播广告 / 拉新活动
 - 卡片列表：Banner 图片、类型标签、启禁用开关、标题、排序号、过期时间、跳转链接
 - 上移/下移排序、编辑/删除
-- 底部弹出表单：标题、类型、跳转链接、排序号、过期时间、图片上传
+- 底部弹出表单：标题、类型、跳转链接、排序号、过期时间、图片上传（上传前经 vue-cropper 裁切，比例 357:120）
 
 ### 9. 邀请好友 (InvitationView.vue)
 - **对接后端 API**：`/admin/pinball/invitation/activity/page`、`/save`、`/delete`，记录 `/record/page`
