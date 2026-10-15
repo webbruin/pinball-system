@@ -73,11 +73,30 @@
                 </van-radio-group>
               </template>
             </van-field>
+            <van-field name="clickEventType" label="点击类型">
+              <template #input>
+                <van-radio-group direction="horizontal" v-model="form.clickEventType">
+                  <van-radio :name="1">不传</van-radio>
+                  <van-radio :name="2">图片</van-radio>
+                  <van-radio :name="3">链接</van-radio>
+                </van-radio-group>
+              </template>
+            </van-field>
             <van-field
+              v-if="form.clickEventType === 3"
               v-model="form.jumpUrl"
               label="跳转链接"
               placeholder="请输入"
             />
+            <div v-if="form.clickEventType === 2" class="upload-field">
+              <span class="upload-label">点击图片</span>
+              <van-uploader
+                v-model="clickImageFileList"
+                :max-count="1"
+                :after-read="onClickImageRead"
+                :preview-full-image="false"
+              />
+            </div>
             <van-field
               v-model="form.sort"
               type="number"
@@ -143,7 +162,7 @@
 <script setup>
 import { onMounted, ref, reactive, computed } from 'vue'
 import { showConfirmDialog, showToast, showLoadingToast } from 'vant'
-import { uploadFile } from '../utils/upload'
+import { uploadFile, onUploadRead } from '../utils/upload'
 import { VueCropper } from 'vue-cropper'
 import 'vue-cropper/dist/index.css'
 
@@ -152,6 +171,7 @@ const banners = ref([])
 const showModal = ref(false)
 const submitLoading = ref(false)
 const imgFileList = ref([])
+const clickImageFileList = ref([])
 const showExpireTime = ref(false)
 const expireTimeValue = ref([])
 const showCrop = ref(false)
@@ -170,6 +190,8 @@ const form = reactive({
   title: '',
   bannerType: 1,
   jumpUrl: '',
+  clickEventType: 1,
+  clickImageUrl: '',
   sort: '',
   expireTime: '',
   imgUrl: '',
@@ -211,8 +233,11 @@ const toggleStatus = async (item) => {
       bannerType: item.bannerType,
       imgUrl: item.imgUrl || '',
       jumpUrl: item.jumpUrl || '',
+      clickEventType: item.clickEventType ?? 1,
+      clickImageUrl: item.clickImageUrl || '',
       sort: item.sort,
       expireTime: item.expireTime || '',
+      status: item.status,
     })
     if (res.code !== 200) {
       item.status = item.status === 1 ? 0 : 1
@@ -288,10 +313,13 @@ function openAdd() {
   form.title = ''
   form.bannerType = 1
   form.jumpUrl = ''
+  form.clickEventType = 1
+  form.clickImageUrl = ''
   form.sort = ''
   form.expireTime = ''
   form.imgUrl = ''
   imgFileList.value = []
+  clickImageFileList.value = []
   showModal.value = true
 }
 
@@ -300,11 +328,24 @@ function openEdit(item) {
   form.title = item.title
   form.bannerType = item.bannerType
   form.jumpUrl = item.jumpUrl || ''
+  form.clickEventType = item.clickEventType ?? (item.jumpUrl ? 3 : 1)
+  form.clickImageUrl = item.clickImageUrl || ''
   form.sort = item.sort
   form.expireTime = item.expireTime || ''
   form.imgUrl = item.imgUrl || ''
   imgFileList.value = item.imgUrl ? [{ url: item.imgUrl }] : []
+  clickImageFileList.value = item.clickImageUrl ? [{ url: item.clickImageUrl }] : []
   showModal.value = true
+}
+
+async function onClickImageRead(detail) {
+  const url = await onUploadRead(detail)
+  if (url) {
+    form.clickImageUrl = url
+    clickImageFileList.value = [{ url }]
+  } else {
+    clickImageFileList.value = []
+  }
 }
 
 function onImgRead(file) {
