@@ -152,7 +152,7 @@
                 </van-radio-group>
               </template>
             </van-field>
-            <van-field name="realNameRequired" label="要求实名">
+            <van-field name="realNameRequired" label="要求邀请者实名">
               <template #input>
                 <van-radio-group direction="horizontal" v-model="form.realNameRequired">
                   <van-radio :name="0">否</van-radio>
@@ -160,7 +160,7 @@
                 </van-radio-group>
               </template>
             </van-field>
-            <van-field name="rechargeRequired" label="要求充值">
+            <van-field name="rechargeRequired" label="要求被邀请者充值">
               <template #input>
                 <van-radio-group direction="horizontal" v-model="form.rechargeRequired">
                   <van-radio :name="0">否</van-radio>
