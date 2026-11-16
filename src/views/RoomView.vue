@@ -53,6 +53,16 @@
                    <van-switch v-model="item.onlineStatus" :active-value="1" :inactive-value="0" size="18px" @change="switchRoomOnline(item)" />
                 </div>
               </van-space>
+              <van-button
+                v-if="item.useStatus === 10"
+                type="success"
+                plain
+                size="small"
+                icon="replay"
+                block
+                style="margin-bottom: 10px"
+                @click="recoverRoom(item)"
+              >恢复</van-button>
               <van-row :gutter="[10]">
                 <van-col span="12">
                   <van-button plain size="small" icon="edit" block @click="openEdit(item)">编辑</van-button>
@@ -349,6 +359,31 @@ function save() {
   } else {
     createRoom()
   }
+}
+
+// 房间-手动调整状态（恢复故障房间）
+const recoverRoom = (item) => {
+  showConfirmDialog({
+    message: '确认恢复该房间吗？恢复后房间状态将变为空闲',
+  })
+    .then(async () => {
+      try {
+        const res = await api.post('/admin/pinball/room/adjustRoomStatus', {
+          roomId: item.id,
+          targetDeviceStatus: 1,
+          targetRoomStatus: 0,
+        })
+        if (res.code === 200) {
+          showToast('恢复成功')
+          getPageRoom(true)
+        } else {
+          showToast(res.message)
+        }
+      } catch (e) {
+        showToast('系统错误')
+      }
+    })
+    .catch(() => {});
 }
 
 function deleteRoom(id) {

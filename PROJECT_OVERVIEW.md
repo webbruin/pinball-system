@@ -116,9 +116,10 @@ pinball-system-miniapp-ui/
 - 完整 CRUD（分页加载、新增、编辑、删除确认）
 
 ### 6. 房间管理 (RoomView.vue)
-- **对接后端 API**：`/admin/pinball/room/pageRoom` 等
+- **对接后端 API**：`/admin/pinball/room/pageRoom` 等，故障恢复走 `/admin/pinball/room/adjustRoomStatus`
 - 双列网格卡片展示：房间封面图、名称、使用状态（空闲/使用中/故障/下线）、在线状态、房间类型
 - 编辑/删除操作，新增/编辑关联房间类型选择器
+- 故障房间（`useStatus === 10`）显示"恢复"按钮，确认弹窗后调用手动调整状态接口，将房间恢复为空闲（targetDeviceStatus=1、targetRoomStatus=0）
 
 ### 7. 签到奖励 (SignInView.vue)
 - **对接后端 API**：`/admin/pinball/signIn/getConfig`、`/saveConfig`

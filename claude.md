@@ -1151,6 +1151,19 @@ base
         "code": 0,
         "message": ""
       }
+  5.手动调整状态
+    接口：/admin/pinball/room/adjustRoomStatus
+    入参：
+      roomId	房间ID		false	
+      targetDeviceStatus	目标设备状态：1-正常，2-异常，3-故障，4-心跳超时，5-下线
+      targetRoomStatus	目标房间使用状态：0-空闲，1-使用中，10-故障，11-下线，12-调试中	
+    出参：
+      {
+        "code": 0,
+        "message": ""
+      }
+
+
 十五.用户反馈管理
   1.分页查询所有反馈列表
     接口：/admin/pinball/feedback/page
