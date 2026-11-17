@@ -13,6 +13,7 @@ import SignInView from '../views/SignInView.vue'
 import BannerView from '../views/BannerView.vue'
 import InvitationView from '../views/InvitationView.vue'
 import RechargeView from '../views/RechargeView.vue'
+import RechargeOrderView from '../views/RechargeOrderView.vue'
 import MqttLogView from '../views/MqttLogView.vue'
 import OrderView from '../views/OrderView.vue'
 import WithdrawView from '../views/WithdrawView.vue'
@@ -39,6 +40,7 @@ const router = createRouter({
         { path: '/banner', name: 'banner', component: BannerView },
         { path: '/invitation', name: 'invitation', component: InvitationView },
         { path: '/recharge', name: 'recharge', component: RechargeView },
+        { path: '/recharge-order', name: 'recharge-order', component: RechargeOrderView },
         { path: '/mqtt-log', name: 'mqtt-log', component: MqttLogView },
         { path: '/order', name: 'order', component: OrderView },
         { path: '/withdraw', name: 'withdraw', component: WithdrawView },

@@ -50,6 +50,7 @@ const tabs = [
   { path: '/order',      icon: 'orders-o',         label: '订单管理' },
   { path: '/withdraw',   icon: 'balance-o',        label: '提现管理' },
   { path: '/recharge',   icon: 'gold-coin-o',      label: '充值套餐' },
+  { path: '/recharge-order', icon: 'bill-o',      label: '充值订单' },
   { path: '/member',     icon: 'vip-card-o',       label: '会员等级' },
   { path: '/user',       icon: 'friends-o',        label: '用户管理' },
   { path: '/sign-in',    icon: 'gift-o',           label: '签到奖励' },
