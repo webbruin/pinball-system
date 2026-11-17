@@ -155,7 +155,7 @@
             <van-cell title="用户账号" :value="flow.userName || '-'" />
             <van-cell title="用户昵称" :value="flow.nickName || '-'" />
             <van-cell title="关联订单号" :value="flow.bizId || '-'" />
-            <van-cell title="变更事件" :value="flow.changeCode || '-'" />
+            <van-cell title="变更事件" :value="changeCodeLabels[flow.changeCode] || flow.changeCode || '-'" />
             <van-cell title="变更类型" :value="flow.changeType ?? '-'" />
             <van-cell title="变更数额" :value="formatAmount(flow.changeAmount, flow.unit)" />
             <van-cell title="变更前余额" :value="formatAmount(flow.beforeAmount, flow.unit)" />
@@ -185,6 +185,12 @@ const orderStatuses = [
 ]
 const payChannels = { ALIPAY: '支付宝', WECHAT: '微信支付' }
 const accountTypes = { MARBLE: '弹珠', POINT_CARD: '积分卡', MEMBER_POINT: '会员积分', WITHDRAW: '提现金额' }
+const changeCodeLabels = {
+  RECHARGE: '充值到账',
+  RECHARGE_GIFT: '充值赠送',
+  RECHARGE_LEVEL_BONUS: '会员等级加成赠送',
+  INVITATION_RECHARGE_COMMISSION: '邀请用户充值提成',
+}
 
 const orderId = ref('')
 const emptyFilters = { userId: '', userName: '', phoneNumber: '', orderStatus: '', payChannel: '', startDate: '', endDate: '' }
