@@ -156,7 +156,7 @@
             <van-cell title="用户昵称" :value="flow.nickName || '-'" />
             <van-cell title="关联订单号" :value="flow.bizId || '-'" />
             <van-cell title="变更事件" :value="changeCodeLabels[flow.changeCode] || flow.changeCode || '-'" />
-            <van-cell title="变更类型" :value="flow.changeType ?? '-'" />
+            <van-cell title="变更类型" :value="changeTypeLabels[flow.changeType] ?? flow.changeType ?? '-'" />
             <van-cell title="变更数额" :value="formatAmount(flow.changeAmount, flow.unit)" />
             <van-cell title="变更前余额" :value="formatAmount(flow.beforeAmount, flow.unit)" />
             <van-cell title="变更后余额" :value="formatAmount(flow.afterAmount, flow.unit)" />
@@ -191,6 +191,7 @@ const changeCodeLabels = {
   RECHARGE_LEVEL_BONUS: '会员等级加成赠送',
   INVITATION_RECHARGE_COMMISSION: '邀请用户充值提成',
 }
+const changeTypeLabels = { 1: '收入', 2: '支出' }
 
 const orderId = ref('')
 const emptyFilters = { userId: '', userName: '', phoneNumber: '', orderStatus: '', payChannel: '', startDate: '', endDate: '' }
